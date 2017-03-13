@@ -2,6 +2,8 @@
 
 > a GitHub Integration built with [Probot](https://github.com/probot/probot) that closes abandoned issues after a few months of inactivity.
 
+[![](https://cloud.githubusercontent.com/assets/173/23858697/4885f0d6-07cf-11e7-96ed-716948027bbc.png)](https://github.com/probot/demo/issues/2)
+
 Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-mark-and-sweep-stale-issues) bot that runs @jekyllbot.
 
 ## TODO:
