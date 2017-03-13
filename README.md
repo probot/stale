@@ -19,7 +19,7 @@ Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-m
 
 0. [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) - Click this button and pick an **App Name** that Heroku is happy with. Before you can complete this, you'll need config variables from the next step.
 
-0. In another tab, [create an integration](https://github.com/settings/integrations/new) on GitHub, using `https://[yourappname].herokuapp.com/` (replacing `[yourappname]` with the name from step 1) as the **Homepage URL**, **Callback URL**, and **Webhook URL**, and under **Permissions & events**, set:
+0. In another tab, [create an integration](https://github.com/settings/integrations/new) on GitHub, using `https://[yourappname].herokuapp.com/` (replacing `[yourappname]` with the name from step 1) as the **Callback URL** and **Webhook URL**, and under **Permissions & events**, set:
   - Issues - **Read & Write**
     - [x] Check the box for **Issue comment** events
     - [x] Check the box for **Issues** events
