@@ -51,7 +51,6 @@ module.exports = async function(robot) {
     const stale = new Stale(client, {
       owner: repository.owner.login,
       repo: repository.name,
-      perform: false,
       ttl: 1000 * 60 * 60 * 2,
       logger: robot.log
     });
