@@ -1,17 +1,37 @@
 const Stale = require('./lib/stale');
 
-// TODO:
-// - [ ] On an interval:
-//   - [x] Get all installations & repositories
-//   - [x] Run mark & sweep
-// - [ ] on relevant issue activity: unmark
-// - [ ] Get config from repo or org
-
-const INTERVAL = 30 * 1000; // check every hour
+// Check for stale issues every hour
+const INTERVAL = 60 * 60 * 1000;
 
 module.exports = async function(robot) {
+  // Check for stale issues startup
+  check();
+
+  // Schedule interval to perform stale issue check
   setInterval(check, INTERVAL);
-  check(); // check on startup
+
+  // Unmark stale issues if a user comments
+  robot.on('issue_comment.created', async (event, context) => {
+    if(!context.isBot) {
+      const github = await robot.auth(event.payload.installation.id)
+      const stale = new Stale(github, context.repo({logger: robot.log}));
+
+      if(stale.hasStaleLabel(issue)) {
+        stale.unmark(issue);
+      }
+    }
+  });
+
+  // Unmark stale issues if an exempt label is added
+  robot.on('issues.labeled', async (event, context) => {
+    const github = await robot.auth(event.payload.installation.id)
+    const stale = new Stale(github, context.repo({logger: robot.log}));
+    const issue = event.payload.issue;
+
+    if(stale.hasStaleLabel(issue) && stale.hasExemptLabel(issue)) {
+      stale.unmark(issue);
+    }
+  });
 
   async function check() {
     robot.log.info("Checking for stale issues");
