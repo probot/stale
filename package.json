@@ -1,0 +1,17 @@
+{
+  "name": "probot-stale",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Brandon Keepers",
+  "repository": "https://github.com/probot/gardener",
+  "scripts": {
+    "start": "probot ./index.js"
+  },
+  "dependencies": {
+    "probot": "probot/probot#wild-wild-west"
+  },
+  "engines": {
+    "node": ">= 7.7.0",
+    "npm": ">= 4.0.0"
+  }
+}
