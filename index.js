@@ -40,6 +40,11 @@ module.exports = async robot => {
     return checkInstallation(event.payload.installation);
   });
 
+  // https://developer.github.com/early-access/integrations/webhooks/#integrationinstallationrepositoriesevent
+  robot.on('integration_installation_repositories.added', async event => {
+    return checkInstallation(event.payload.installation);
+  });
+
   async function check() {
     robot.log.info('Checking for stale issues');
 
@@ -50,11 +55,11 @@ module.exports = async robot => {
   }
 
   async function checkInstallation(installation) {
-    const client = await robot.auth(installation.id);
+    const github = await robot.auth(installation.id);
     // TODO: Pagination
-    const data = await client.integrations.getInstallationRepositories({});
+    const data = await github.integrations.getInstallationRepositories({});
     return data.repositories.map(async repo => {
-      const stale = await forRepository(client, repo);
+      const stale = await forRepository(github, repo);
       return stale.markAndSweep();
     });
   }
