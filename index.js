@@ -3,7 +3,7 @@ const Stale = require('./lib/stale');
 // Check for stale issues every hour
 const INTERVAL = 60 * 60 * 1000;
 
-module.exports = async function(robot) {
+module.exports = async robot => {
   // Check for stale issues startup
   check();
 
@@ -12,11 +12,12 @@ module.exports = async function(robot) {
 
   // Unmark stale issues if a user comments
   robot.on('issue_comment.created', async (event, context) => {
-    if(!context.isBot) {
-      const github = await robot.auth(event.payload.installation.id)
+    if (!context.isBot) {
+      const github = await robot.auth(event.payload.installation.id);
       const stale = new Stale(github, context.repo({logger: robot.log}));
+      const issue = event.payload.issue;
 
-      if(stale.hasStaleLabel(issue)) {
+      if (stale.hasStaleLabel(issue)) {
         stale.unmark(issue);
       }
     }
@@ -24,17 +25,17 @@ module.exports = async function(robot) {
 
   // Unmark stale issues if an exempt label is added
   robot.on('issues.labeled', async (event, context) => {
-    const github = await robot.auth(event.payload.installation.id)
+    const github = await robot.auth(event.payload.installation.id);
     const stale = new Stale(github, context.repo({logger: robot.log}));
     const issue = event.payload.issue;
 
-    if(stale.hasStaleLabel(issue) && stale.hasExemptLabel(issue)) {
+    if (stale.hasStaleLabel(issue) && stale.hasExemptLabel(issue)) {
       stale.unmark(issue);
     }
   });
 
   async function check() {
-    robot.log.info("Checking for stale issues");
+    robot.log.info('Checking for stale issues');
 
     const github = await robot.integration.asIntegration();
     // TODO: Pagination
@@ -56,4 +57,4 @@ module.exports = async function(robot) {
     });
     return stale.markAndSweep();
   }
-}
+};

@@ -5,7 +5,8 @@
   "author": "Brandon Keepers",
   "repository": "https://github.com/probot/gardener",
   "scripts": {
-    "start": "probot ./index.js"
+    "start": "probot ./index.js",
+    "test": "xo"
   },
   "dependencies": {
     "probot": "probot/probot"
@@ -13,5 +14,17 @@
   "engines": {
     "node": ">= 7.7.0",
     "npm": ">= 4.0.0"
+  },
+  "devDependencies": {
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "esnext": true,
+    "space": true,
+    "rules": {
+      "camelcase": 1,
+      "no-else-return": 0,
+      "key-spacing": 0
+    }
   }
 }
