@@ -6,7 +6,11 @@
 
 Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-mark-and-sweep-stale-issues) bot that runs @jekyllbot.
 
-## Configuration
+## Usage
+
+**[Configure the GitHub Integration](https://github.com/integration/probot-stale)**
+
+> **Heads Up!** This integration will run as soon as you install it on your repository. If you want to change any of the settings, do it before installing.
 
 Configuration in `.github/stale.yml` can override these defaults:
 
