@@ -1,3 +1,4 @@
+const yaml = require('js-yaml');
 const Stale = require('./lib/stale');
 
 // Check for stale issues every hour
@@ -14,7 +15,7 @@ module.exports = async robot => {
   robot.on('issue_comment.created', async (event, context) => {
     if (!context.isBot) {
       const github = await robot.auth(event.payload.installation.id);
-      const stale = new Stale(github, context.repo({logger: robot.log}));
+      const stale = await forRepository(github, event.payload.repository);
       const issue = event.payload.issue;
 
       if (stale.hasStaleLabel(issue)) {
@@ -24,9 +25,9 @@ module.exports = async robot => {
   });
 
   // Unmark stale issues if an exempt label is added
-  robot.on('issues.labeled', async (event, context) => {
+  robot.on('issues.labeled', async event => {
     const github = await robot.auth(event.payload.installation.id);
-    const stale = new Stale(github, context.repo({logger: robot.log}));
+    const stale = await forRepository(github, event.payload.repository);
     const issue = event.payload.issue;
 
     if (stale.hasStaleLabel(issue) && stale.hasExemptLabel(issue)) {
@@ -44,17 +45,28 @@ module.exports = async robot => {
       const client = await robot.auth(installation.id);
       // TODO: Pagination
       const data = await client.integrations.getInstallationRepositories({});
-      return data.repositories.map(repo => checkRepository(client, repo));
+      return data.repositories.map(async repo => {
+        const stale = await forRepository(client, repo);
+        return stale.markAndSweep();
+      });
     });
   }
 
-  async function checkRepository(client, repository) {
-    const stale = new Stale(client, {
-      owner: repository.owner.login,
-      repo: repository.name,
-      ttl: 1000 * 60 * 60 * 2,
-      logger: robot.log
-    });
-    return stale.markAndSweep();
+  async function forRepository(github, repository) {
+    const owner = repository.owner.login;
+    const repo = repository.name;
+    const path = '.github/stale.yml';
+    let config;
+
+    try {
+      const data = await github.repos.getContent({owner, repo, path});
+      config = yaml.load(new Buffer(data.content, 'base64').toString());
+    } catch (err) {
+      config = {};
+    }
+
+    config = Object.assign(config, {owner, repo, logger: robot.log});
+
+    return new Stale(github, config);
   }
 };
