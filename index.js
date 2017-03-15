@@ -35,20 +35,27 @@ module.exports = async robot => {
     }
   });
 
+  // https://developer.github.com/early-access/integrations/webhooks/#integrationinstallationrepositoriesevent
+  robot.on('integration_installation.created', async event => {
+    return checkInstallation(event.payload.installation);
+  });
+
   async function check() {
     robot.log.info('Checking for stale issues');
 
     const github = await robot.integration.asIntegration();
     // TODO: Pagination
     const installations = await github.integrations.getInstallations({});
-    installations.forEach(async installation => {
-      const client = await robot.auth(installation.id);
-      // TODO: Pagination
-      const data = await client.integrations.getInstallationRepositories({});
-      return data.repositories.map(async repo => {
-        const stale = await forRepository(client, repo);
-        return stale.markAndSweep();
-      });
+    return installations.map(i => checkInstallation(i));
+  }
+
+  async function checkInstallation(installation) {
+    const client = await robot.auth(installation.id);
+    // TODO: Pagination
+    const data = await client.integrations.getInstallationRepositories({});
+    return data.repositories.map(async repo => {
+      const stale = await forRepository(client, repo);
+      return stale.markAndSweep();
     });
   }
 
