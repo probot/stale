@@ -6,13 +6,35 @@
 
 Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-mark-and-sweep-stale-issues) bot that runs @jekyllbot.
 
+## Configuration
+
+Configuration in `.github/stale.yml` can override these defaults:
+
+```yml
+# Number of days of inactivity before an issue becomes stale
+days: 60
+# Issues with these labels will never be considered stale
+exemptLabels:
+  - pinned
+  - security
+# Label to use when marking an issue as stale
+staleLabel: wontfix
+# Comment to post when marking an issue as stale. Set to `false` to disable
+markComment: >
+  This issue has been automatically marked as stale because it has not had
+  recent activity. It will be closed if no further activity occurs. Thank you
+  for your contributions.
+# Comment to post when closing a stale issue. Set to `false` to disable
+closeComment: false
+```
+
 ## TODO:
 
 - [x] On an interval:
   - [x] Get all installations & repositories
   - [x] Run mark & sweep
 - [x] on relevant issue activity: unmark
-- [ ] Get config from repo or org
+- [x] Get config from repo
 - [ ] Deploy demo instance
 - [ ] Add docs on usage/deployment
 - [ ] Release v1.0
