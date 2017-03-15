@@ -9,6 +9,7 @@
     "test": "xo"
   },
   "dependencies": {
+    "js-yaml": "^3.8.2",
     "probot": "probot/probot"
   },
   "engines": {
