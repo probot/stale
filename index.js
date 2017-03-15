@@ -74,7 +74,8 @@ module.exports = async robot => {
       const data = await github.repos.getContent({owner, repo, path});
       config = yaml.load(new Buffer(data.content, 'base64').toString());
     } catch (err) {
-      config = {};
+      // Don't actually perform for repository without a config
+      config = {perform: false};
     }
 
     config = Object.assign(config, {owner, repo, logger: robot.log});
