@@ -28,17 +28,6 @@ markComment: >
 closeComment: false
 ```
 
-## TODO:
-
-- [x] On an interval:
-  - [x] Get all installations & repositories
-  - [x] Run mark & sweep
-- [x] on relevant issue activity: unmark
-- [x] Get config from repo
-- [ ] Deploy demo instance
-- [ ] Add docs on usage/deployment
-- [ ] Release v1.0
-
 ## Deploying to Heroku
 
 0. [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) - Click this button and pick an **App Name** that Heroku is happy with. Before you can complete this, you'll need config variables from the next step.
