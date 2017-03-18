@@ -5,7 +5,7 @@
   "author": "Brandon Keepers",
   "repository": "https://github.com/probot/gardener",
   "scripts": {
-    "start": "probot ./index.js",
+    "start": "probot run ./index.js",
     "test": "xo"
   },
   "dependencies": {
