@@ -5,12 +5,12 @@
   "author": "Brandon Keepers",
   "repository": "https://github.com/probot/gardener",
   "scripts": {
-    "start": "probot ./index.js",
+    "start": "probot run ./index.js",
     "test": "xo"
   },
   "dependencies": {
     "js-yaml": "^3.8.2",
-    "probot": "probot/probot"
+    "probot": "~0.2.0"
   },
   "engines": {
     "node": ">= 7.7.0",
