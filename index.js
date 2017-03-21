@@ -1,5 +1,6 @@
 const yaml = require('js-yaml');
 const Stale = require('./lib/stale');
+const paginate = require('./lib/paginate');
 
 // Check for stale issues every hour
 const INTERVAL = 60 * 60 * 1000;
@@ -49,19 +50,20 @@ module.exports = async robot => {
     robot.log.info('Checking for stale issues');
 
     const github = await robot.integration.asIntegration();
-    // TODO: Pagination
-    const installations = await github.integrations.getInstallations({});
-    return installations.map(i => checkInstallation(i));
+
+    return github.integrations.getInstallations({}).then(paginate(github, installations => {
+      return installations.map(checkInstallation);
+    }));
   }
 
   async function checkInstallation(installation) {
     const github = await robot.auth(installation.id);
-    // TODO: Pagination
-    const data = await github.integrations.getInstallationRepositories({});
-    return data.repositories.map(async repo => {
-      const stale = await forRepository(github, repo);
-      return stale.markAndSweep();
-    });
+    return github.integrations.getInstallationRepositories({}).then(paginate(github, data => {
+      data.repositories.forEach(async repo => {
+        const stale = await forRepository(github, repo);
+        return stale.markAndSweep();
+      });
+    }));
   }
 
   async function forRepository(github, repository) {
