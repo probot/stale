@@ -51,14 +51,14 @@ module.exports = async robot => {
 
     const github = await robot.integration.asIntegration();
 
-    return github.integrations.getInstallations({}).then(paginate(installations => {
+    return github.integrations.getInstallations({}).then(paginate(github, installations => {
       return installations.map(checkInstallation);
     }));
   }
 
   async function checkInstallation(installation) {
     const github = await robot.auth(installation.id);
-    return github.integrations.getInstallationRepositories({}).then(paginate(data => {
+    return github.integrations.getInstallationRepositories({}).then(paginate(github, data => {
       data.repositories.forEach(async repo => {
         const stale = await forRepository(github, repo);
         return stale.markAndSweep();
