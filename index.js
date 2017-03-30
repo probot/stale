@@ -31,9 +31,9 @@ module.exports = async robot => {
   });
 
   async function markAndSweep(installation, repository) {
-    const github = robot.auth(installation.id);
+    const github = await robot.auth(installation.id);
     const stale = await forRepository(github, repository);
-    if(stale.config.perform) {
+    if (stale.config.perform) {
       return stale.markAndSweep();
     }
   }
