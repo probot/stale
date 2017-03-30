@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "js-yaml": "^3.8.2",
-    "probot": "~0.2.0",
+    "probot": "probot/probot#re-paginate",
     "probot-visitor": "probot/visitor"
   },
   "engines": {
