@@ -1,16 +1,10 @@
 const yaml = require('js-yaml');
+const visitor = require('probot-visitor');
 const Stale = require('./lib/stale');
-const paginate = require('./lib/paginate');
-
-// Check for stale issues every hour
-const INTERVAL = 60 * 60 * 1000;
 
 module.exports = async robot => {
-  // Check for stale issues startup
-  check();
-
-  // Schedule interval to perform stale issue check
-  setInterval(check, INTERVAL);
+  // Visit all repositories to mark and sweep stale issues
+  visitor(robot, markAndSweep);
 
   // Unmark stale issues if a user comments
   robot.on('issue_comment.created', async (event, context) => {
@@ -36,34 +30,12 @@ module.exports = async robot => {
     }
   });
 
-  // https://developer.github.com/early-access/integrations/webhooks/#integrationinstallationrepositoriesevent
-  robot.on('integration_installation.created', async event => {
-    return checkInstallation(event.payload.installation);
-  });
-
-  // https://developer.github.com/early-access/integrations/webhooks/#integrationinstallationrepositoriesevent
-  robot.on('integration_installation_repositories.added', async event => {
-    return checkInstallation(event.payload.installation);
-  });
-
-  async function check() {
-    robot.log.info('Checking for stale issues');
-
-    const github = await robot.integration.asIntegration();
-
-    return github.integrations.getInstallations({}).then(paginate(github, installations => {
-      return installations.map(checkInstallation);
-    }));
-  }
-
-  async function checkInstallation(installation) {
-    const github = await robot.auth(installation.id);
-    return github.integrations.getInstallationRepositories({}).then(paginate(github, data => {
-      data.repositories.forEach(async repo => {
-        const stale = await forRepository(github, repo);
-        return stale.markAndSweep();
-      });
-    }));
+  async function markAndSweep(installation, repository) {
+    const github = robot.auth(installation.id);
+    const stale = await forRepository(github, repository);
+    if(stale.config.perform) {
+      return stale.markAndSweep();
+    }
   }
 
   async function forRepository(github, repository) {
