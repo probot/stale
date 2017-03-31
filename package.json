@@ -7,7 +7,7 @@
   "repository": "https://github.com/probot/stale",
   "scripts": {
     "start": "probot run ./index.js",
-    "test": "xo"
+    "test": "xo --extend probot"
   },
   "dependencies": {
     "js-yaml": "^3.8.2",
@@ -19,15 +19,7 @@
     "npm": ">= 4.0.0"
   },
   "devDependencies": {
+    "eslint-config-probot": "^0.1.0",
     "xo": "^0.17.1"
-  },
-  "xo": {
-    "esnext": true,
-    "space": true,
-    "rules": {
-      "camelcase": 1,
-      "no-else-return": 0,
-      "key-spacing": 0
-    }
   }
 }
