@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "js-yaml": "^3.8.2",
-    "probot": "~0.2.0"
+    "probot": "^0.3",
+    "probot-visitor": "^0.1"
   },
   "engines": {
     "node": ">= 7.7.0",
