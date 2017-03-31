@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "author": "Brandon Keepers",
+  "license": "ISC",
   "repository": "https://github.com/probot/gardener",
   "scripts": {
     "start": "probot run ./index.js",
