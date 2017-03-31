@@ -1,10 +1,10 @@
 {
   "name": "probot-stale",
   "version": "1.0.0",
-  "description": "",
+  "description": "a GitHub Integration that closes abandoned issues after a period of inactivity",
   "author": "Brandon Keepers",
   "license": "ISC",
-  "repository": "https://github.com/probot/gardener",
+  "repository": "https://github.com/probot/stale",
   "scripts": {
     "start": "probot run ./index.js",
     "test": "xo"
