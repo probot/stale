@@ -1,31 +1,25 @@
 {
   "name": "probot-stale",
   "version": "1.0.0",
-  "description": "",
+  "description": "a GitHub Integration that closes abandoned issues after a period of inactivity",
   "author": "Brandon Keepers",
-  "repository": "https://github.com/probot/gardener",
+  "license": "ISC",
+  "repository": "https://github.com/probot/stale",
   "scripts": {
     "start": "probot run ./index.js",
-    "test": "xo"
+    "test": "xo --extend probot"
   },
   "dependencies": {
     "js-yaml": "^3.8.2",
-    "probot": "~0.2.0"
+    "probot": "^0.3",
+    "probot-visitor": "^0.1"
   },
   "engines": {
     "node": ">= 7.7.0",
     "npm": ">= 4.0.0"
   },
   "devDependencies": {
+    "eslint-config-probot": "^0.1.0",
     "xo": "^0.17.1"
-  },
-  "xo": {
-    "esnext": true,
-    "space": true,
-    "rules": {
-      "camelcase": 1,
-      "no-else-return": 0,
-      "key-spacing": 0
-    }
   }
 }

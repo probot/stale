@@ -15,8 +15,10 @@ Configuration in `.github/stale.yml` can override these defaults:
 
 ```yml
 # Number of days of inactivity before an Issue or Pull Request becomes stale
-days: 60
-# Issue or Pull Request with these labels will never be considered stale
+daysUntilStale: 60
+# Number of days of inactivity before a stale Issue or Pull Request is closed
+daysUntilClose: 7
+# Issues or Pull Requests with these labels will never be considered stale
 exemptLabels:
   - pinned
   - security
