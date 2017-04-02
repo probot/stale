@@ -7,7 +7,13 @@ module.exports = async robot => {
   visitor(robot, markAndSweep);
 
   // Unmark stale issues if a user comments
-  robot.on('issue_comment.created', async (event, context) => {
+  robot.on('issue_comment', unmark);
+  robot.on('issues', unmark);
+  robot.on('pull_request', unmark);
+  robot.on('pull_request_review', unmark);
+  robot.on('pull_request_review_comment', unmark);
+
+  async function unmark(event, context) {
     if (!context.isBot) {
       const github = await robot.auth(event.payload.installation.id);
       const stale = await forRepository(github, event.payload.repository);
@@ -17,7 +23,7 @@ module.exports = async robot => {
         stale.unmark(issue);
       }
     }
-  });
+  }
 
   // Unmark stale issues if an exempt label is added
   robot.on('issues.labeled', async event => {
