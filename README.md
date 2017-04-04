@@ -11,6 +11,9 @@ Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-m
 1. **[Configure the GitHub Integration](https://github.com/integration/probot-stale)**
 2. Create `.github/stale.yml`
 
+The presence of a `.github/stale.yml` file is required for the probot/stale to act on a repository. An empty `.github/stale.yml` file will
+cause the integration to run using the defaults.
+
 Configuration in `.github/stale.yml` can override these defaults:
 
 ```yml
