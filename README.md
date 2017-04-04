@@ -14,6 +14,8 @@ Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-m
 Configuration in `.github/stale.yml` can override these defaults:
 
 ```yml
+# Configuration for probot-stale - https://github.com/probot/stale
+
 # Number of days of inactivity before an Issue or Pull Request becomes stale
 daysUntilStale: 60
 # Number of days of inactivity before a stale Issue or Pull Request is closed
