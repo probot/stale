@@ -4,7 +4,7 @@ const Stale = require('./lib/stale');
 
 module.exports = async robot => {
   // Visit all repositories to mark and sweep stale issues
-  visitor(robot, markAndSweep);
+  const visit = visitor(robot, markAndSweep);
 
   // Unmark stale issues if a user comments
   robot.on('issue_comment', unmark);
@@ -54,6 +54,7 @@ module.exports = async robot => {
       const data = await github.repos.getContent({owner, repo, path});
       config = yaml.load(new Buffer(data.content, 'base64').toString());
     } catch (err) {
+      visit.stop(repository);
       // Don't actually perform for repository without a config
       config = {perform: false};
     }
