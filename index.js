@@ -17,7 +17,7 @@ module.exports = async robot => {
     if (!context.isBot) {
       const github = await robot.auth(event.payload.installation.id);
       const stale = await forRepository(github, event.payload.repository);
-      const issue = event.payload.issue;
+      const issue = event.payload.issue || event.payload.pull_request;
 
       if (stale.hasStaleLabel(issue)) {
         stale.unmark(issue);
