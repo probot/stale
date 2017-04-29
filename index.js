@@ -57,7 +57,7 @@ module.exports = async robot => {
 
     try {
       const data = await github.repos.getContent({owner, repo, path});
-      config = yaml.load(new Buffer(data.content, 'base64').toString());
+      config = yaml.load(new Buffer(data.content, 'base64').toString()) || {};
     } catch (err) {
       visit.stop(repository);
       // Don't actually perform for repository without a config
