@@ -31,6 +31,8 @@ markComment: >
   This issue has been automatically marked as stale because it has not had
   recent activity. It will be closed if no further activity occurs. Thank you
   for your contributions.
+# Comment to post when removing the stale label. Set to `false` to disable
+unmarkComment: false
 # Comment to post when closing a stale Issue or Pull Request. Set to `false` to disable
 closeComment: false
 # Limit to only `issues` or `pulls`
