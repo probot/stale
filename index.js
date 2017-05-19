@@ -24,7 +24,7 @@ module.exports = async robot => {
         issue = await github.issues.get(context.issue());
       }
 
-      if (stale.hasStaleLabel(issue)) {
+      if (stale.hasStaleLabel(issue) && issue.state != 'closed') {
         stale.unmark(issue);
       }
     }
