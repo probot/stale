@@ -24,7 +24,10 @@ module.exports = async robot => {
         issue = await github.issues.get(context.issue());
       }
 
-      if (stale.hasStaleLabel(issue) && issue.state != 'closed') {
+      const staleLabelAdded = event.payload.action === 'labeled' &&
+        event.payload.label.name === stale.config.staleLabel;
+
+      if (stale.hasStaleLabel(issue) && issue.state !== 'closed' && !staleLabelAdded) {
         stale.unmark(issue);
       }
     }
