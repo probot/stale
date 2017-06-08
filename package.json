@@ -15,8 +15,8 @@
     "probot-visitor": "^0.1.1"
   },
   "engines": {
-    "node": ">= 7.7.0",
-    "npm": ">= 4.0.0"
+    "node": "^7.7",
+    "npm": "^4.0"
   },
   "devDependencies": {
     "eslint-config-probot": "^0.1.0",
