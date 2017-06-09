@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "js-yaml": "^3.8.2",
-    "probot": "^0.4.1",
-    "probot-visitor": "^0.1.1"
+    "probot": "^0.6",
+    "probot-visitor": "^0.2"
   },
   "engines": {
     "node": "^7.7",

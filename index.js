@@ -15,13 +15,12 @@ module.exports = async robot => {
 
   async function unmark(event, context) {
     if (!context.isBot) {
-      const github = await robot.auth(event.payload.installation.id);
-      const stale = await forRepository(github, event.payload.repository);
+      const stale = await forRepository(context.github, event.payload.repository);
       let issue = event.payload.issue || event.payload.pull_request;
 
       // Some payloads don't include labels
       if (!issue.labels) {
-        issue = await github.issues.get(context.issue());
+        issue = (await context.github.issues.get(context.issue())).data;
       }
 
       const staleLabelAdded = event.payload.action === 'labeled' &&
@@ -32,17 +31,6 @@ module.exports = async robot => {
       }
     }
   }
-
-  // Unmark stale issues if an exempt label is added
-  robot.on('issues.labeled', async event => {
-    const github = await robot.auth(event.payload.installation.id);
-    const stale = await forRepository(github, event.payload.repository);
-    const issue = event.payload.issue;
-
-    if (stale.hasStaleLabel(issue) && stale.hasExemptLabel(issue)) {
-      stale.unmark(issue);
-    }
-  });
 
   async function markAndSweep(installation, repository) {
     const github = await robot.auth(installation.id);
@@ -59,8 +47,8 @@ module.exports = async robot => {
     let config;
 
     try {
-      const data = await github.repos.getContent({owner, repo, path});
-      config = yaml.load(new Buffer(data.content, 'base64').toString()) || {};
+      const res = await github.repos.getContent({owner, repo, path});
+      config = yaml.load(new Buffer(res.data.content, 'base64').toString()) || {};
     } catch (err) {
       visit.stop(repository);
       // Don't actually perform for repository without a config
