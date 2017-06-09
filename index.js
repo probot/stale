@@ -32,16 +32,6 @@ module.exports = async robot => {
     }
   }
 
-  // Unmark stale issues if an exempt label is added
-  robot.on('issues.labeled', async (event, context) => {
-    const stale = await forRepository(context.github, event.payload.repository);
-    const issue = event.payload.issue;
-
-    if (stale.hasStaleLabel(issue) && stale.hasExemptLabel(issue)) {
-      stale.unmark(issue);
-    }
-  });
-
   async function markAndSweep(installation, repository) {
     const github = await robot.auth(installation.id);
     const stale = await forRepository(github, repository);
