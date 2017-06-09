@@ -20,7 +20,7 @@ module.exports = async robot => {
 
       // Some payloads don't include labels
       if (!issue.labels) {
-        issue = await context.github.issues.get(context.issue());
+        issue = (await context.github.issues.get(context.issue())).data;
       }
 
       const staleLabelAdded = event.payload.action === 'labeled' &&
