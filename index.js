@@ -33,7 +33,7 @@ module.exports = async robot => {
   }
 
   // Unmark stale issues if an exempt label is added
-  robot.on('issues.labeled', async event => {
+  robot.on('issues.labeled', async (event, context) => {
     const stale = await forRepository(context.github, event.payload.repository);
     const issue = event.payload.issue;
 
