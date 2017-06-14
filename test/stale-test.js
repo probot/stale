@@ -34,17 +34,15 @@ describe('Stale behavior', function () {
     });
   });
 
-  describe('defaults', function () {
-    it('has the expected defaults', function () {
-      stale = new Stale(github, {});
+  it('has the expected defaults', function () {
+    stale = new Stale(github, {});
 
-      expect(stale.config.daysUntilStale).toBe(60);
-      expect(stale.config.daysUntilClose).toBe(7);
-      expect(stale.config.exemptLabels).toEqual(['pinned', 'security']);
-      expect(stale.config.staleLabel).toEqual('wontfix');
-      expect(stale.config.unmarkComment).toBe(false);
-      expect(stale.config.closeComment).toBe(false);
-    });
+    expect(stale.config.daysUntilStale).toBe(60);
+    expect(stale.config.daysUntilClose).toBe(7);
+    expect(stale.config.exemptLabels).toEqual(['pinned', 'security']);
+    expect(stale.config.staleLabel).toEqual('wontfix');
+    expect(stale.config.unmarkComment).toBe(false);
+    expect(stale.config.closeComment).toBe(false);
   });
 
   describe('ensureStaleLabelExists', function () {
