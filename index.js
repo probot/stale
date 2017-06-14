@@ -40,8 +40,8 @@ async function noResponseBehavior(robot) {
     let config;
 
     try {
-      const data = await github.repos.getContent({owner, repo, path});
-      config = yaml.load(new Buffer(data.content, 'base64').toString()).noResponse || {};
+      const res = await github.repos.getContent({owner, repo, path});
+      config = yaml.load(new Buffer(res.data.content, 'base64').toString()).noResponse || {};
       config.exists = true;
     } catch (err) {
       robot.log.debug(err, 'No configuration file found');
