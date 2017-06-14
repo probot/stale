@@ -23,5 +23,17 @@
     "expect": "^1.20.2",
     "mocha": "^3.4.2",
     "xo": "^0.17.1"
+  },
+  "xo": {
+    "overrides": [
+      {
+        "files": "test/**/*.js",
+        "rules": {
+          "max-nested-callbacks": "off",
+          "prefer-arrow-callback": "off",
+          "no-unused-vars": "off"
+        }
+      }
+    ]
   }
 }

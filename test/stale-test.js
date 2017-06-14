@@ -4,23 +4,33 @@ const Stale = require('../lib/stale');
 
 const FakeGitHub = require('./fake-github');
 
+const {createSpy, spyOn} = expect;
+
 describe('Stale behavior', function () {
   let createLabelSpy;
   let getLabelSpy;
   let github;
   let issues;
+  let issueSearchSpy;
+  let logger;
   let stale;
 
   beforeEach(function () {
     github = new FakeGitHub();
-    createLabelSpy = expect.spyOn(github.issues, 'createLabel');
-    getLabelSpy = expect.spyOn(github.issues, 'getLabel');
+    createLabelSpy = spyOn(github.issues, 'createLabel');
+    getLabelSpy = spyOn(github.issues, 'getLabel');
+    issueSearchSpy = spyOn(github.search, 'issues');
+    logger = {
+      debug: createSpy(),
+      trace: createSpy()
+    };
 
     stale = new Stale(github, {
       owner: 'owner',
       repo: 'repo',
       staleLabel: 'stale-label',
-      exemptLabels: ['exempt-one', 'exempt-two']
+      exemptLabels: ['exempt-one', 'exempt-two'],
+      logger
     });
   });
 
@@ -78,6 +88,51 @@ describe('Stale behavior', function () {
 
     it('returns false if there are no labels', function () {
       expect(stale.hasStaleLabel({labels: []})).toBe(false);
+    });
+  });
+
+  describe('search', function () {
+    it('crafts the correct search query', function () {
+      stale.search(100, 'foo');
+
+      const params = issueSearchSpy.calls[0].arguments[0];
+      const timestamp = new Date(new Date() - (100 * 24 * 60 * 60 * 1000)).toISOString().replace(/\.\d{3}\w$/, '');
+
+      expect(params.q)
+        .toMatch(/repo:owner\/repo/)
+        .toMatch(/is:open/)
+        .toMatch(/foo/)
+        .toMatch(new RegExp(`updated:<${timestamp}`));
+
+      expect(params.per_page).toBe(100);
+      expect(params.sort).toEqual('updated');
+      expect(params.order).toEqual('desc');
+    });
+
+    it('searches for both issues and PRs by default', function () {
+      stale.search(100, 'foo');
+
+      expect(issueSearchSpy.calls[0].arguments[0].q)
+        .toNotMatch(/is:pr/)
+        .toNotMatch(/is:issue/);
+    });
+
+    it('searches for only issues if configured', function () {
+      stale.config.only = 'issues';
+      stale.search(100, 'foo');
+
+      const params = issueSearchSpy.calls[0].arguments[0];
+
+      expect(params.q).toMatch(/is:issue/);
+    });
+
+    it('searches for only PRs if configured', function () {
+      stale.config.only = 'pulls';
+      stale.search(100, 'foo');
+
+      const params = issueSearchSpy.calls[0].arguments[0];
+
+      expect(params.q).toMatch(/is:pr/);
     });
   });
 });
