@@ -40,3 +40,35 @@ closeComment: false
 ```
 
 See [docs/deploy.md](docs/deploy.md) if you would like to run your own instance of this plugin.
+
+## Troubleshooting
+
+Once probot-stale is configured and running, it can be difficult to tell if the bot is working.
+The following sections should help clarify probot-stale's behavior.
+
+### Is probot-stale running?
+
+Once the bot starts, it scans for stale issues and/or pull requests every hour. When it begins
+each hour, however, is randomly determined. The plugin delegates to GitHub for determining
+updated time.
+
+When the bot is first started (or the integration is installed, depending on your setup method)
+and the config file is already in place, the bot will not comment on items right away. However,
+if the config file is pushed up after the bot starts, it will start searching for issues
+immediately.
+
+The start-up delay is useful for organizations that enable probot-stale on many repositories
+within the organization to avoid hitting API limits.
+
+### Stale vs. Updated
+
+When probot-stale searches for stale issues and/or pull requests, "stale" doesn't mean **only**
+when a user comments on an issue. It can also mean when a milestone is applied, a label is changed,
+a commit is added, etc.
+
+The bot uses GitHub's [updated](https://help.github.com/articles/searching-issues/#search-based-on-when-an-issue-or-pull-request-was-created-or-last-updated)
+search qualifier to find stale issues or pull requests.
+
+An easy way to check and see which issues (or pull requests) probot-stale will initially mark as
+stale is to add the `updated` search qualifier to either the issue or pull request page filter for
+your repository.
