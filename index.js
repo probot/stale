@@ -16,7 +16,7 @@ module.exports = async robot => {
 
   async function unmark(event, context) {
     if (!context.isBot) {
-      const stale = await forRepository(context.github, event.payload.repository);
+      const stale = await forRepository(context);
       let issue = event.payload.issue || event.payload.pull_request;
 
       // Some payloads don't include labels
@@ -34,30 +34,28 @@ module.exports = async robot => {
   }
 
   async function markAndSweep(context) {
-    const github = await robot.auth(installation.id);
-    const stale = await forRepository(context.github, context.payload.repository);
+    const stale = await forRepository(context);
     if (stale.config.perform) {
       return stale.markAndSweep();
     }
   }
 
-  async function forRepository(github, repository) {
-    const owner = repository.owner.login;
-    const repo = repository.name;
+  async function forRepository(context) {
+    const {owner, repo} = context.repo();
     const path = '.github/stale.yml';
     let config;
 
     try {
-      const res = await github.repos.getContent({owner, repo, path});
+      const res = await context.github.repos.getContent({owner, repo, path});
       config = yaml.safeLoad(new Buffer(res.data.content, 'base64').toString()) || {};
     } catch (err) {
-      visit.stop(repository);
+      scheduler.stop(context.payload.repository);
       // Don't actually perform for repository without a config
       config = {perform: false};
     }
 
     config = Object.assign(config, {owner, repo, logger: robot.log});
 
-    return new Stale(github, config);
+    return new Stale(context.github, config);
   }
 };
