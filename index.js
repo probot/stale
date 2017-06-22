@@ -1,10 +1,10 @@
 const yaml = require('js-yaml');
-const visitor = require('probot-visitor');
+const createScheduler = require('probot-scheduler');
 const Stale = require('./lib/stale');
 
 module.exports = async robot => {
   // Visit all repositories to mark and sweep stale issues
-  const visit = visitor(robot, markAndSweep);
+  const scheduler = createScheduler(robot);
 
   // Unmark stale issues if a user comments
   robot.on('issue_comment', unmark);
@@ -12,6 +12,7 @@ module.exports = async robot => {
   robot.on('pull_request', unmark);
   robot.on('pull_request_review', unmark);
   robot.on('pull_request_review_comment', unmark);
+  robot.on('schedule.repository', markAndSweep);
 
   async function unmark(event, context) {
     if (!context.isBot) {
@@ -32,9 +33,9 @@ module.exports = async robot => {
     }
   }
 
-  async function markAndSweep(installation, repository) {
+  async function markAndSweep(context) {
     const github = await robot.auth(installation.id);
-    const stale = await forRepository(github, repository);
+    const stale = await forRepository(context.github, context.payload.repository);
     if (stale.config.perform) {
       return stale.markAndSweep();
     }
