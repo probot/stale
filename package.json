@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "js-yaml": "^3.8.2",
-    "probot": "^0.6",
+    "probot": "^0.7.4",
     "probot-visitor": "^0.2"
   },
   "engines": {
@@ -21,6 +21,7 @@
   "devDependencies": {
     "eslint-config-probot": "^0.1.0",
     "expect": "^1.20.2",
+    "localtunnel": "^1.8.3",
     "mocha": "^3.4.2",
     "xo": "^0.17.1"
   },
