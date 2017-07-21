@@ -6,12 +6,13 @@
   "license": "ISC",
   "repository": "https://github.com/probot/stale",
   "scripts": {
-    "start": "probot run ./index.js",
+    "start": "probot run probot-metrics ./index.js",
     "test": "xo --extend probot"
   },
   "dependencies": {
     "js-yaml": "^3.8.2",
     "probot": "^0.7.4",
+    "probot-metrics": "git+https://github.com/probot/metrics.git",
     "probot-visitor": "^0.2"
   },
   "engines": {
