@@ -8,8 +8,9 @@ Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-m
 
 ## Usage
 
-1. **[Configure the GitHub Integration](https://github.com/integration/probot-stale)**
-2. Create `.github/stale.yml`
+1. **[Configure the GitHub App](https://github.com/apps/probot-stale)**
+2. Create `.github/stale.yml` based on the following template
+3. It will start scanning for stale issues and/or pull requests within an hour.
 
 A `.github/stale.yml` file is required to enable the plugin. The file can be empty, or it can override any of these default settings:
 
@@ -38,5 +39,13 @@ closeComment: false
 # Limit to only `issues` or `pulls`
 # only: issues
 ```
+
+## How are issues & pull requests considered stale?
+
+The app uses GitHub's [updated](https://help.github.com/articles/searching-issues/#search-based-on-when-an-issue-or-pull-request-was-created-or-last-updated) search qualifier to determine staleness. Any change to an issues and pull request is considered an update, including comments, changing labels, applying or removing milestones,  or pushing commits.
+
+An easy way to check and see which issues or pull requests will initially be marked as stale is to add the `updated` search qualifier to either the issue or pull request page filter for your repository: `updated:<2017-07-01`. Adjust the date to be 60 days ago (or whatever you set for `daysUntilStale`) to see which issues or pull requests will be marked.
+
+## Deployment
 
 See [docs/deploy.md](docs/deploy.md) if you would like to run your own instance of this plugin.
