@@ -1,4 +1,3 @@
-const yaml = require('js-yaml');
 const createScheduler = require('probot-scheduler');
 const Stale = require('./lib/stale');
 
@@ -41,20 +40,17 @@ module.exports = async robot => {
   }
 
   async function forRepository(context) {
-    const {owner, repo} = context.repo();
-    const path = '.github/stale.yml';
     let config;
 
     try {
-      const res = await context.github.repos.getContent({owner, repo, path});
-      config = yaml.safeLoad(new Buffer(res.data.content, 'base64').toString()) || {};
+      config = await context.config('stale.yml');
     } catch (err) {
       scheduler.stop(context.payload.repository);
       // Don't actually perform for repository without a config
       config = {perform: false};
     }
 
-    config = Object.assign(config, {owner, repo, logger: robot.log});
+    config = Object.assign(config, context.repo({logger: robot.log}));
 
     return new Stale(context.github, config);
   }
