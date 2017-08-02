@@ -10,7 +10,7 @@
     "test": "xo --extend probot"
   },
   "dependencies": {
-    "probot": "^0.7.4",
+    "probot": "^0.8.0",
     "probot-scheduler": "~1.0"
   },
   "engines": {
