@@ -13,18 +13,18 @@ module.exports = async robot => {
   robot.on('pull_request_review_comment', unmark);
   robot.on('schedule.repository', markAndSweep);
 
-  async function unmark(event, context) {
+  async function unmark(context) {
     if (!context.isBot) {
       const stale = await forRepository(context);
-      let issue = event.payload.issue || event.payload.pull_request;
+      let issue = context.payload.issue || context.payload.pull_request;
 
       // Some payloads don't include labels
       if (!issue.labels) {
         issue = (await context.github.issues.get(context.issue())).data;
       }
 
-      const staleLabelAdded = event.payload.action === 'labeled' &&
-        event.payload.label.name === stale.config.staleLabel;
+      const staleLabelAdded = context.payload.action === 'labeled' &&
+        context.payload.label.name === stale.config.staleLabel;
 
       if (stale.hasStaleLabel(issue) && issue.state !== 'closed' && !staleLabelAdded) {
         stale.unmark(issue);
