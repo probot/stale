@@ -1,4 +1,3 @@
-const yaml = require('js-yaml');
 const createScheduler = require('probot-scheduler');
 const Stale = require('./lib/stale');
 
@@ -14,18 +13,18 @@ module.exports = async robot => {
   robot.on('pull_request_review_comment', unmark);
   robot.on('schedule.repository', markAndSweep);
 
-  async function unmark(event, context) {
+  async function unmark(context) {
     if (!context.isBot) {
       const stale = await forRepository(context);
-      let issue = event.payload.issue || event.payload.pull_request;
+      let issue = context.payload.issue || context.payload.pull_request;
 
       // Some payloads don't include labels
       if (!issue.labels) {
         issue = (await context.github.issues.get(context.issue())).data;
       }
 
-      const staleLabelAdded = event.payload.action === 'labeled' &&
-        event.payload.label.name === stale.config.staleLabel;
+      const staleLabelAdded = context.payload.action === 'labeled' &&
+        context.payload.label.name === stale.config.staleLabel;
 
       if (stale.hasStaleLabel(issue) && issue.state !== 'closed' && !staleLabelAdded) {
         stale.unmark(issue);
@@ -41,20 +40,17 @@ module.exports = async robot => {
   }
 
   async function forRepository(context) {
-    const {owner, repo} = context.repo();
-    const path = '.github/stale.yml';
     let config;
 
     try {
-      const res = await context.github.repos.getContent({owner, repo, path});
-      config = yaml.safeLoad(new Buffer(res.data.content, 'base64').toString()) || {};
+      config = await context.config('stale.yml');
     } catch (err) {
       scheduler.stop(context.payload.repository);
       // Don't actually perform for repository without a config
       config = {perform: false};
     }
 
-    config = Object.assign(config, {owner, repo, logger: robot.log});
+    config = Object.assign(config, context.repo({logger: robot.log}));
 
     return new Stale(context.github, config);
   }
