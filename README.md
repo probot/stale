@@ -8,7 +8,7 @@ Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-m
 
 ## Usage
 
-1. **[Configure the GitHub App](https://github.com/apps/probot-stale)**
+1. **[Configure the GitHub App](https://github.com/apps/stale)**
 2. Create `.github/stale.yml` based on the following template
 3. It will start scanning for stale issues and/or pull requests within an hour.
 
