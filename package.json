@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "probot": "^0.8.0",
-    "probot-scheduler": "^1.0.1"
+    "probot-scheduler": "^1.0.2"
   },
   "engines": {
     "node": "^7.7",
