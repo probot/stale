@@ -27,7 +27,7 @@ module.exports = async robot => {
         context.payload.label.name === stale.config.staleLabel;
 
       if (stale.hasStaleLabel(issue) && issue.state !== 'closed' && !staleLabelAdded) {
-        stale.unmark(issue);
+        stale.unmarkIssue(issue);
       }
     }
   }
