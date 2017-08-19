@@ -1,6 +1,6 @@
 {
   "name": "probot-stale",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "a GitHub App that closes abandoned issues after a period of inactivity",
   "author": "Brandon Keepers",
   "license": "ISC",
