@@ -7,10 +7,10 @@
   "repository": "https://github.com/probot/stale",
   "scripts": {
     "start": "probot run ./index.js",
-    "test": "xo --extend probot"
+    "test": "mocha && xo --extend probot"
   },
   "dependencies": {
-    "probot": "^0.8.0",
+    "probot": "^0.10.0",
     "probot-scheduler": "^1.0.2"
   },
   "engines": {
@@ -21,7 +21,7 @@
     "eslint-config-probot": "^0.1.0",
     "expect": "^1.20.2",
     "localtunnel": "^1.8.3",
-    "mocha": "^3.4.2",
+    "mocha": "^3.5.0",
     "xo": "^0.17.1"
   }
 }
