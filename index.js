@@ -6,7 +6,15 @@ module.exports = async robot => {
   const scheduler = createScheduler(robot)
 
   // Unmark stale issues if a user comments
-  robot.on(['issue_comment', 'issues', 'pull_request', 'pull_request_review', 'pull_request_review_comment'], unmark)
+  const events = [
+    'issue_comment',
+    'issues',
+    'pull_request',
+    'pull_request_review',
+    'pull_request_review_comment'
+  ]
+
+  robot.on(events, unmark)
   robot.on('schedule.repository', markAndSweep)
 
   async function unmark (context) {
@@ -36,11 +44,9 @@ module.exports = async robot => {
   }
 
   async function forRepository (context) {
-    let config
+    let config = await context.config('stale.yml')
 
-    try {
-      config = await context.config('stale.yml')
-    } catch (err) {
+    if (!config) {
       scheduler.stop(context.payload.repository)
       // Don't actually perform for repository without a config
       config = {perform: false}

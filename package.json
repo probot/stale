@@ -21,6 +21,6 @@
   "devDependencies": {
     "expect": "^1.20.2",
     "localtunnel": "^1.8.3",
-    "mocha": "^3.4.2"
+    "mocha": "^3.5.0"
   }
 }
