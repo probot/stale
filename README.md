@@ -40,7 +40,7 @@ closeComment: false
 # only: issues
 ```
 
-## How are issues & pull requests considered stale?
+## How are issues and pull requests considered stale?
 
 The app uses GitHub's [updated](https://help.github.com/articles/searching-issues/#search-based-on-when-an-issue-or-pull-request-was-created-or-last-updated) search qualifier to determine staleness. Any change to an issues and pull request is considered an update, including comments, changing labels, applying or removing milestones,  or pushing commits.
 
