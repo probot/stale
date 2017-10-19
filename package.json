@@ -10,7 +10,7 @@
     "test": "standard"
   },
   "dependencies": {
-    "probot": "^0.10.0",
+    "probot": "^3.0.0",
     "probot-scheduler": "^1.0.2",
     "standard": "^10.0.3"
   },
