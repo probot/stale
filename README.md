@@ -37,8 +37,21 @@ markComment: >
 unmarkComment: false
 # Comment to post when closing a stale Issue or Pull Request. Set to `false` to disable
 closeComment: false
+# Limit the number of actions per hour, from 1-30. Default is 30
+limitPerRun: 30
 # Limit to only `issues` or `pulls`
 # only: issues
+#
+# Optionally, specify configuration settings that are specific to just 'issues' or 'pulls':
+# pulls:
+#   daysUntilStale: 30
+#   markComment: >
+#     This pull request has been automatically marked as stale because it has not had
+#     recent activity. It will be closed if no further activity occurs. Thank you
+#     for your contributions.
+# issues:
+#   exemptLabels:
+#     - confirmed
 ```
 
 ## How are issues and pull requests considered stale?
