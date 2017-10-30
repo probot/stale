@@ -25,6 +25,7 @@ daysUntilClose: 7
 exemptLabels:
   - pinned
   - security
+  - "[Status] Maybe Later"
 # Label to use when marking as stale
 staleLabel: wontfix
 # Comment to post when marking as stale. Set to `false` to disable
