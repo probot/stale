@@ -38,7 +38,9 @@ unmarkComment: false
 # Comment to post when closing a stale Issue or Pull Request. Set to `false` to disable
 closeComment: false
 # Limit to only `issues` or `pulls`
-# only: issues
+only: issues
+# Lock stale issues
+lock: false
 ```
 
 ## How are issues and pull requests considered stale?
