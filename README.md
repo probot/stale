@@ -21,7 +21,7 @@ A `.github/stale.yml` file is required to enable the plugin. The file can be emp
 daysUntilStale: 60
 # Number of days of inactivity before a stale Issue or Pull Request is closed
 daysUntilClose: 7
-# Number of days of inactivity before a stale Issue or Pull Request is locked
+# Number of days after a stale Issue or Pull Request has been closed to lock it
 # daysUntilLock: 7
 # Issues or Pull Requests with these labels will never be considered stale. Set to `[]` to disable
 exemptLabels:
