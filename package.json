@@ -23,12 +23,6 @@
     "localtunnel": "^1.8.3",
     "mocha": "^3.5.0"
   },
-  "jest": {
-    "testMatch": [ "**/test/**/*.js?(x)", "**/?(*.)(spec|test).js?(x)" ],
-    "modulePathIgnorePatterns": [
-      "<rootDir>/test/fixtures/"
-    ]
-  },
   "standard": {
     "env": [
       "jest"
