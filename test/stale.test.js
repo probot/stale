@@ -126,4 +126,19 @@ describe('stale', () => {
       expect(labeledStale).toEqual(limitPerRun - staleCount)
     }
   })
+
+  it('should not close issues if closeStale is configured as false', async () => {
+    let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale'})
+    stale.config.closeStale = false
+    stale.getClosable = expect.createSpy()
+
+    for (const type of ['pulls', 'issues']) {
+      try {
+        await stale.markAndSweep(type)
+        expect(stale.getClosable).not.toHaveBeenCalled()
+      } catch(_) {
+        throw new Error('Should not have thrown an error')
+      }
+    }
+  })
 })
