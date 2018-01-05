@@ -130,17 +130,15 @@ describe('stale', () => {
   })
 
   it('should not close issues if closeStale is configured as false', async () => {
-    let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale'})
-    stale.config.closeStale = false
+    let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger})
+    stale.config.daysUntilClose = false
+    stale.getStale = expect.createSpy().andReturn(Promise.resolve({data: {items: []}}))
     stale.getClosable = expect.createSpy()
 
-    for (const type of ['pulls', 'issues']) {
-      try {
-        await stale.markAndSweep(type)
-        expect(stale.getClosable).not.toHaveBeenCalled()
-      } catch(_) {
-        throw new Error('Should not have thrown an error')
-      }
-    }
+    await stale.markAndSweep('issues')
+    expect(stale.getClosable).toNotHaveBeenCalled()
+
+    await stale.markAndSweep('pulls')
+    expect(stale.getClosable).toNotHaveBeenCalled()
   })
 })
