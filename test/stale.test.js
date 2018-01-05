@@ -126,4 +126,17 @@ describe('stale', () => {
       expect(labeledStale).toEqual(limitPerRun - staleCount)
     }
   })
+
+  it('should not close issues if daysUntilClose is configured as false', async () => {
+    let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale'})
+    stale.config.daysUntilClose = false
+    stale.getStale = expect.createSpy().andReturn(Promise.resolve({data: {items: []}}))
+    stale.getClosable = expect.createSpy()
+
+    await stale.markAndSweep('issues')
+    expect(stale.getClosable).toNotHaveBeenCalled()
+
+    await stale.markAndSweep('pulls')
+    expect(stale.getClosable).toNotHaveBeenCalled()
+  })
 })
