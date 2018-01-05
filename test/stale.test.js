@@ -128,7 +128,7 @@ describe('stale', () => {
   })
 
   it('should not close issues if closeStale is configured as false', async () => {
-    let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger})
+    let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale'})
     stale.config.daysUntilClose = false
     stale.getStale = expect.createSpy().andReturn(Promise.resolve({data: {items: []}}))
     stale.getClosable = expect.createSpy()
