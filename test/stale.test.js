@@ -1,3 +1,5 @@
+process.env.LOG_LEVEL = 'fatal'
+
 const expect = require('expect')
 const {createRobot} = require('probot')
 const Stale = require('../lib/stale')
@@ -8,11 +10,11 @@ const notFoundError = {
 }
 
 describe('stale', () => {
-  let robot
-  let github
+  let robot, github, logger
 
   beforeEach(() => {
     robot = createRobot()
+    logger = robot.log
 
     const issueAction = expect.createSpy().andReturn(Promise.resolve(notFoundError))
 
@@ -40,7 +42,7 @@ describe('stale', () => {
   })
 
   it('removes the stale label and ignores if it has already been removed', async () => {
-    let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale'})
+    let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger})
 
     for (const type of ['pulls', 'issues']) {
       try {
@@ -114,7 +116,7 @@ describe('stale', () => {
       // Mock out GitHub client
       robot.auth = () => Promise.resolve(github)
 
-      const stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale'})
+      const stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger})
       stale.config.limitPerRun = limitPerRun
       stale.config.staleLabel = staleLabel
       stale.config.closeComment = 'closed'
