@@ -27,6 +27,10 @@ exemptLabels:
   - pinned
   - security
   - "[Status] Maybe Later"
+# Set to true to ignore issues in a project (defaults to false)
+exemptProjects: true
+# Set to true to ignore issues in a milestone (defaults to false)
+exemptMilestones: true
 # Label to use when marking as stale
 staleLabel: wontfix
 # Comment to post when marking as stale. Set to `false` to disable
