@@ -7,7 +7,7 @@
   "repository": "https://github.com/probot/stale",
   "scripts": {
     "start": "probot run ./index.js",
-    "test": "mocha && standard"
+    "test": "jest && standard"
   },
   "dependencies": {
     "probot": "^3.0.0",
@@ -19,9 +19,8 @@
     "npm": "^4.0"
   },
   "devDependencies": {
-    "expect": "^1.20.2",
-    "localtunnel": "^1.8.3",
-    "mocha": "^3.5.0"
+    "jest": "^22.2.2",
+    "localtunnel": "^1.8.3"
   },
   "standard": {
     "env": [
