@@ -1,27 +1,28 @@
 const schema = require('../lib/schema')
 
 const validConfigs = [
-  {daysUntilClose: false},
-  {daysUntilClose: 1},
-  {exemptLabels: ['foo']},
-  {exemptProjects: true},
-  {exemptProjects: false},
-  {exemptMilestones: true},
-  {exemptMilestones: false},
-  {staleLabel: 'stale'},
-  {markComment: 'stale yo'},
-  {markComment: false},
-  {unmarkComment: 'not stale'},
-  {unmarkComment: false},
-  {closeComment: 'closing yo'},
-  {closeComment: false},
-  {limitPerRun: 1},
-  {limitPerRun: 30},
-  {only: null},
-  {only: 'issues'},
-  {only: 'pulls'},
-  {pulls: {daysUntilStale: 2}},
-  {issues: {staleLabel: 'stale-issue'}}
+  [{daysUntilClose: false}],
+  [{daysUntilClose: 1}],
+  [{exemptLabels: ['foo']}],
+  [{exemptLabels: 'foo'}, {exemptLabels: ['foo']}],
+  [{exemptProjects: true}],
+  [{exemptProjects: false}],
+  [{exemptMilestones: true}],
+  [{exemptMilestones: false}],
+  [{staleLabel: 'stale'}],
+  [{markComment: 'stale yo'}],
+  [{markComment: false}],
+  [{unmarkComment: 'not stale'}],
+  [{unmarkComment: false}],
+  [{closeComment: 'closing yo'}],
+  [{closeComment: false}],
+  [{limitPerRun: 1}],
+  [{limitPerRun: 30}],
+  [{only: null}],
+  [{only: 'issues'}],
+  [{only: 'pulls'}],
+  [{pulls: {daysUntilStale: 2}}],
+  [{issues: {staleLabel: 'stale-issue'}}]
 ]
 
 const invalidConfigs = [
@@ -63,11 +64,11 @@ describe('schema', () => {
     })
   })
 
-  validConfigs.forEach(example => {
+  validConfigs.forEach(([example, expected = example]) => {
     test(`${JSON.stringify(example)} is valid`, () => {
       const result = schema.validate(example)
       expect(result.error).toBe(null)
-      expect(result.value).toMatchObject(example)
+      expect(result.value).toMatchObject(expected)
     })
   })
 
