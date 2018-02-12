@@ -16,8 +16,8 @@
     "standard": "^10.0.3"
   },
   "engines": {
-    "node": "^7.7",
-    "npm": "^4.0"
+    "node": "^8.9",
+    "npm": "^5.6"
   },
   "devDependencies": {
     "jest": "^22.2.2",
