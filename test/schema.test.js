@@ -21,12 +21,14 @@ const validConfigs = [
   {only: 'issues'},
   {only: 'pulls'},
   {pulls: {daysUntilStale: 2}},
+  {issues: {staleLabel: 'stale-issue'}}
 ]
 
 const invalidConfigs = [
   [{daysUntilClose: true}, 'must be a number or false'],
   [{exemptProjects: 'nope'}, 'must be a boolean'],
   [{exemptMilestones: 'nope'}, 'must be a boolean'],
+  [{staleLabel: ''}, 'not allowed to be empty'],
   [{staleLabel: false}, 'must be a string'],
   [{staleLabel: ['a', 'b']}, 'must be a string'],
   [{markComment: true}, 'must be a string or false'],
@@ -35,7 +37,11 @@ const invalidConfigs = [
   [{limitPerRun: 31}, 'must be an integer between 1 and 30'],
   [{limitPerRun: 0}, 'must be an integer between 1 and 30'],
   [{limitPerRun: 0.5}, 'must be an integer between 1 and 30'],
-  [{only: 'donuts'}, 'must be one of [issues, pulls, null]']
+  [{only: 'donuts'}, 'must be one of [issues, pulls, null]'],
+  [{pulls: {daysUntilStale: 'no'}}, 'must be a number'],
+  [{pulls: {lol: 'nope'}}, '"lol" is not allowed'],
+  [{issues: {staleLabel: ''}}, 'not allowed to be empty']
+
 ]
 
 describe('schema', () => {
