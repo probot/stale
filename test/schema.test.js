@@ -5,6 +5,8 @@ const validConfigs = [
   [{daysUntilClose: 1}],
   [{exemptLabels: ['foo']}],
   [{exemptLabels: 'foo'}, {exemptLabels: ['foo']}],
+  [{exemptLabels: null}],
+  [{exemptLabels: []}],
   [{exemptProjects: true}],
   [{exemptProjects: false}],
   [{exemptMilestones: true}],
