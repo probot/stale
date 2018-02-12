@@ -73,8 +73,8 @@ describe('schema', () => {
 
   invalidConfigs.forEach(([example, message]) => {
     test(`${JSON.stringify(example)} is invalid`, () => {
-      const result = schema.validate(example)
-      expect(result.error && result.error.toString()).toMatch(message)
+      const {error} = schema.validate(example)
+      expect(error && error.toString()).toMatch(message)
     })
   })
 })
