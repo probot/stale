@@ -66,6 +66,16 @@ describe('schema', () => {
     })
   })
 
+  test('does not set defaults for pulls and issues', () => {
+    expect(schema.validate({pulls: {daysUntilStale: 90}}).value.pulls).toEqual({
+      daysUntilStale: 90
+    })
+
+    expect(schema.validate({issues: {daysUntilStale: 90}}).value.issues).toEqual({
+      daysUntilStale: 90
+    })
+  })
+
   validConfigs.forEach(([example, expected = example]) => {
     test(`${JSON.stringify(example)} is valid`, () => {
       const result = schema.validate(example)
