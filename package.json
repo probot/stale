@@ -13,7 +13,7 @@
     "joi": "^13.1.2",
     "probot": "^5.0.0",
     "probot-scheduler": "^1.0.2",
-    "standard": "^10.0.3"
+    "standard": "^11.0.0"
   },
   "engines": {
     "node": "^8.9",
