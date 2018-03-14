@@ -28,7 +28,7 @@ module.exports = async robot => {
         try {
           issue = (await context.github.issues.get(context.issue())).data
         } catch (error) {
-          console.log('Issue not found')
+          context.log('Issue not found')
         }
       }
 
