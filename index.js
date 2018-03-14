@@ -25,7 +25,11 @@ module.exports = async robot => {
 
       // Some payloads don't include labels
       if (!issue.labels) {
-        issue = (await context.github.issues.get(context.issue())).data
+        try {
+          issue = (await context.github.issues.get(context.issue())).data
+        } catch (error) {
+          console.log('Issue not found')
+        }
       }
 
       const staleLabelAdded = context.payload.action === 'labeled' &&
