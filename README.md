@@ -56,6 +56,10 @@ markComment: >
 # closeComment: >
 #   Your comment here.
 
+# Comment to post when locking a stale Issue or Pull Request.
+# lockComment: >
+#   Your comment here.
+
 # Limit the number of actions per hour, from 1-30. Default is 30
 limitPerRun: 30
 
