@@ -10,24 +10,18 @@
     "test": "jest && standard"
   },
   "dependencies": {
-    "probot": "^3.0.0",
+    "joi": "^13.1.2",
+    "probot": "^6.0.0",
     "probot-scheduler": "^1.0.2",
     "standard": "^10.0.3"
   },
   "engines": {
-    "node": "^7.7",
-    "npm": "^4.0"
+    "node": "^8.9",
+    "npm": "^5.6"
   },
   "devDependencies": {
-    "expect": "^1.20.2",
-    "localtunnel": "^1.8.3",
-    "mocha": "^3.5.0"
-  },
-  "jest": {
-    "testMatch": [ "**/test/**/*.js?(x)", "**/?(*.)(spec|test).js?(x)" ],
-    "modulePathIgnorePatterns": [
-      "<rootDir>/test/fixtures/"
-    ]
+    "jest": "^22.2.2",
+    "smee-client": "^1.0.1"
   },
   "standard": {
     "env": [

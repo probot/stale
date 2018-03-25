@@ -21,6 +21,7 @@ module.exports = async robot => {
     if (!context.isBot) {
       const stale = await forRepository(context)
       let issue = context.payload.issue || context.payload.pull_request
+      const type = context.payload.issue ? 'issues' : 'pulls'
 
       // Some payloads don't include labels
       if (!issue.labels) {
@@ -30,17 +31,16 @@ module.exports = async robot => {
       const staleLabelAdded = context.payload.action === 'labeled' &&
         context.payload.label.name === stale.config.staleLabel
 
-      if (stale.hasStaleLabel(issue) && issue.state !== 'closed' && !staleLabelAdded) {
-        stale.unmark(issue)
+      if (stale.hasStaleLabel(type, issue) && issue.state !== 'closed' && !staleLabelAdded) {
+        stale.unmark(type, issue)
       }
     }
   }
 
   async function markAndSweep (context) {
     const stale = await forRepository(context)
-    if (stale.config.perform) {
-      return stale.markAndSweep()
-    }
+    await stale.markAndSweep('pulls')
+    await stale.markAndSweep('issues')
   }
 
   async function forRepository (context) {
