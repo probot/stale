@@ -24,6 +24,9 @@ daysUntilStale: 60
 # Set to false to disable. If disabled, issues still need to be closed manually, but will remain marked as stale.
 daysUntilClose: 7
 
+# Number of days after a stale Issue or Pull Request has been closed to lock it
+# daysUntilLock: 7
+
 # Issues or Pull Requests with these labels will never be considered stale. Set to `[]` to disable
 exemptLabels:
   - pinned
@@ -51,6 +54,10 @@ markComment: >
 
 # Comment to post when closing a stale Issue or Pull Request.
 # closeComment: >
+#   Your comment here.
+
+# Comment to post when locking a stale Issue or Pull Request.
+# lockComment: >
 #   Your comment here.
 
 # Limit the number of actions per hour, from 1-30. Default is 30
