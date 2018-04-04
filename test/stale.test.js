@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 process.env.LOG_LEVEL = 'fatal'
 
 const {createRobot} = require('probot')
