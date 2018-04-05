@@ -24,7 +24,9 @@ const validConfigs = [
   [{only: 'issues'}],
   [{only: 'pulls'}],
   [{pulls: {daysUntilStale: 2}}],
-  [{issues: {staleLabel: 'stale-issue'}}]
+  [{issues: {staleLabel: 'stale-issue'}}],
+  [{_extends: '.github'}],
+  [{_extends: 'foobar'}]
 ]
 
 const invalidConfigs = [
@@ -43,8 +45,9 @@ const invalidConfigs = [
   [{only: 'donuts'}, 'must be one of [issues, pulls, null]'],
   [{pulls: {daysUntilStale: 'no'}}, 'must be a number'],
   [{pulls: {lol: 'nope'}}, '"lol" is not allowed'],
-  [{issues: {staleLabel: ''}}, 'not allowed to be empty']
-
+  [{issues: {staleLabel: ''}}, 'not allowed to be empty'],
+  [{_extends: true}, 'must be a string'],
+  [{_extends: false}, 'must be a string']
 ]
 
 describe('schema', () => {
