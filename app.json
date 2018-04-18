@@ -9,5 +9,14 @@
     "WEBHOOK_SECRET": {
       "description": "the secret configured for your GitHub App"
     }
+  },
+  "labels": {
+    "created":false,
+    "types": {
+      "urgent":{
+        "length":"10h",
+        "color":"f00000"
+      }
+    }
   }
 }
