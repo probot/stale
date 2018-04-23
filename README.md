@@ -82,6 +82,14 @@ An easy way to check and see which issues or pull requests will initially be mar
 
 To avoid triggering abuse prevention mechanisms on GitHub, only 30 issues and pull requests will be marked or closed per hour. If your repository has more than that, it will just take a few hours or days to mark them all.
 
+## Is closing stale issues really a good idea?
+
+In an ideal world with infinite resources, there would be no need for this app.
+
+But in any successful software project, there's always more work to do than people to do it. As more and more work piles up, it becomes paralyzing. Just making decisions about what work should and shouldn't get done can exhaust all available resources. In the experience of the maintainers of this app—and the hundreds of other projects and organizations that use it—focusing on issues that are actively affecting humans is an effecitive method for prioritizing work.
+
+To some, a robot trying to close stale issues may seem inhospitable or offensive to contributors. But the alternative is to disrespect them by setting false expectations and implicitly ignoring their work. This app makes it explicit: if work is not progressing, then it's stale. A comment is all it takes to keep the conversation alive.
+
 ## Deployment
 
 See [docs/deploy.md](docs/deploy.md) if you would like to run your own instance of this plugin.
