@@ -12,6 +12,8 @@ const validConfigs = [
   [{exemptMilestones: true}],
   [{exemptMilestones: false}],
   [{staleLabel: 'stale'}],
+  [{lockStale: true}],
+  [{lockStale: false}],
   [{markComment: 'stale yo'}],
   [{markComment: false}],
   [{unmarkComment: 'not stale'}],
@@ -36,6 +38,7 @@ const invalidConfigs = [
   [{staleLabel: ''}, 'not allowed to be empty'],
   [{staleLabel: false}, 'must be a string'],
   [{staleLabel: ['a', 'b']}, 'must be a string'],
+  [{lockStale: 'nope'}, 'must be a boolean'],
   [{markComment: true}, 'must be a string or false'],
   [{unmarkComment: true}, 'must be a string or false'],
   [{closeComment: true}, 'must be a string or false'],
@@ -59,6 +62,7 @@ describe('schema', () => {
       exemptProjects: false,
       exemptMilestones: false,
       staleLabel: 'wontfix',
+      lockStale: false,
       perform: true,
       markComment: 'This issue has been automatically marked as stale because ' +
         'it has not had recent activity. It will be closed if no further ' +
