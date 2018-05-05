@@ -40,6 +40,7 @@ module.exports = async robot => {
 
   async function markAndSweep (context) {
     const stale = await forRepository(context)
+    console.log("IN markAndSweep")
     await stale.markAndSweep('pulls')
     await stale.markAndSweep('issues')
   }
