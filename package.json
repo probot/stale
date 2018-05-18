@@ -1,9 +1,17 @@
 {
   "name": "probot-stale",
   "version": "1.1.0",
-  "description": "a GitHub App that closes abandoned issues after a period of inactivity",
+  "description": "A GitHub App built with Probot that closes abandoned Issues and Pull Requests after a period of inactivity.",
   "author": "Brandon Keepers",
   "license": "ISC",
+  "homepage": "https://probot.github.io/apps/stale/",
+  "bugs": "https://github.com/probot/stale/issues",
+  "keywords": [
+    "probot",
+    "github",
+    "probot-plugin",
+    "probot-app"
+  ],
   "repository": "https://github.com/probot/stale",
   "scripts": {
     "start": "probot run ./index.js",
