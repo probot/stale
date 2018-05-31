@@ -9,7 +9,6 @@
   "keywords": [
     "probot",
     "github",
-    "probot-plugin",
     "probot-app"
   ],
   "repository": "https://github.com/probot/stale",
