@@ -1,6 +1,6 @@
 # Probot: Stale
 
-> a GitHub App built with [Probot](https://github.com/probot/probot) that closes abandoned Issues and Pull Requests after a period of inactivity.
+> A GitHub App built with [Probot](https://github.com/probot/probot) that closes abandoned Issues and Pull Requests after a period of inactivity.
 
 [![](https://cloud.githubusercontent.com/assets/173/23858697/4885f0d6-07cf-11e7-96ed-716948027bbc.png)](https://github.com/probot/demo/issues/2)
 
@@ -9,7 +9,7 @@ Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-m
 ## Usage
 
 1. **[Configure the GitHub App](https://github.com/apps/stale)**
-2. Create `.github/stale.yml` based on the following template
+2. Create `.github/stale.yml` based on the following template.
 3. It will start scanning for stale issues and/or pull requests within an hour.
 
 A `.github/stale.yml` file is required to enable the plugin. The file can be empty, or it can override any of these default settings:
@@ -86,10 +86,20 @@ To avoid triggering abuse prevention mechanisms on GitHub, only 30 issues and pu
 
 In an ideal world with infinite resources, there would be no need for this app.
 
-But in any successful software project, there's always more work to do than people to do it. As more and more work piles up, it becomes paralyzing. Just making decisions about what work should and shouldn't get done can exhaust all available resources. In the experience of the maintainers of this app—and the hundreds of other projects and organizations that use it—focusing on issues that are actively affecting humans is an effecitive method for prioritizing work.
+But in any successful software project, there's always more work to do than people to do it. As more and more work piles up, it becomes paralyzing. Just making decisions about what work should and shouldn't get done can exhaust all available resources. In the experience of the maintainers of this app—and the hundreds of other projects and organizations that use it—focusing on issues that are actively affecting humans is an effective method for prioritizing work.
 
 To some, a robot trying to close stale issues may seem inhospitable or offensive to contributors. But the alternative is to disrespect them by setting false expectations and implicitly ignoring their work. This app makes it explicit: if work is not progressing, then it's stale. A comment is all it takes to keep the conversation alive.
 
 ## Deployment
 
 See [docs/deploy.md](docs/deploy.md) if you would like to run your own instance of this plugin.
+
+## Contribute
+
+If you have suggestions for how Stale could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
+
+Note that all interactions fall under the [Probot Code of Conduct](https://github.com/probot/probot/blob/master/CODE_OF_CONDUCT.md).
+
+## License
+
+[ISC](LICENCE) Copyright © 2017-2018 Brandon Keepers
