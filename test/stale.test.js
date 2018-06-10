@@ -150,4 +150,49 @@ describe('stale', () => {
       expect(stale.getClosable).not.toHaveBeenCalled()
     }
   )
+
+  test(
+    'should not close issues if the keyword pulls or keyword issues is used, and daysUntilClose is configured as false',
+    async () => {
+      let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger: robot.log})
+      stale.config.pulls = { daysUntilClose: false }
+      stale.config.issues = { daysUntilClose: false }
+      stale.getStale = jest.fn().mockImplementation(() => Promise.resolve({data: {items: []}}))
+      stale.getClosable = jest.fn()
+
+      await stale.markAndSweep('issues')
+      expect(stale.getClosable).not.toHaveBeenCalled()
+
+      await stale.markAndSweep('pulls')
+      expect(stale.getClosable).not.toHaveBeenCalled()
+    }
+  )
+
+  test(
+    'should not close issues if only keyword is configured with the pulls value',
+    async () => {
+      let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger: robot.log})
+      stale.config.only = 'pulls'
+      stale.config.daysUntilClose = 1
+      stale.getStale = jest.fn().mockImplementation(() => Promise.resolve({data: {items: []}}))
+      stale.getClosable = jest.fn()
+
+      await stale.markAndSweep('issues')
+      expect(stale.getClosable).not.toHaveBeenCalled()
+    }
+  )
+
+  test(
+    'should not close pull requests if only keyword is configured with the issues value',
+    async () => {
+      let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger: robot.log})
+      stale.config.only = 'issues'
+      stale.config.daysUntilClose = 1
+      stale.getStale = jest.fn().mockImplementation(() => Promise.resolve({data: {items: []}}))
+      stale.getClosable = jest.fn()
+
+      await stale.markAndSweep('pulls')
+      expect(stale.getClosable).not.toHaveBeenCalled()
+    }
+  )
 })
