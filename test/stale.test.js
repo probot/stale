@@ -150,4 +150,21 @@ describe('stale', () => {
       expect(stale.getClosable).not.toHaveBeenCalled()
     }
   )
+
+  test(
+    'should not close issues if under keyword pulls is used with daysUntilClose is configured as false',
+    async () => {
+      let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger: robot.log})
+      stale.config.pulls = { daysUntilClose: false }
+      stale.config.issues = { daysUntilClose: false }
+      stale.getStale = jest.fn().mockImplementation(() => Promise.resolve({data: {items: []}}))
+      stale.getClosable = jest.fn()
+
+      await stale.markAndSweep('issues')
+      expect(stale.getClosable).not.toHaveBeenCalled()
+
+      await stale.markAndSweep('pulls')
+      expect(stale.getClosable).not.toHaveBeenCalled()
+    }
+  )
 })
