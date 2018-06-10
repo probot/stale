@@ -152,7 +152,7 @@ describe('stale', () => {
   )
 
   test(
-    'should not close issues if under keyword pulls is used with daysUntilClose is configured as false',
+    'should not close issues if the keyword pulls or keyword issues is used, and daysUntilClose is configured as false',
     async () => {
       let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger: robot.log})
       stale.config.pulls = { daysUntilClose: false }
