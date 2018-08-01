@@ -102,4 +102,4 @@ Note that all interactions fall under the [Probot Code of Conduct](https://githu
 
 ## License
 
-[ISC](LICENCE) Copyright © 2017-2018 Brandon Keepers
+[ISC](LICENSE) Copyright © 2017-2018 Brandon Keepers
