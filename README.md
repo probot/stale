@@ -70,6 +70,10 @@ limitPerRun: 30
 # issues:
 #   exemptLabels:
 #     - confirmed
+
+# Optionally, skip weekends when counting the age of an issue or pull. E.g. if it's Monday,
+# "one day old" would mean last updated on Friday. Default is false.
+skipWeekends: true
 ```
 
 ## How are issues and pull requests considered stale?

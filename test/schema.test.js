@@ -25,6 +25,7 @@ const validConfigs = [
   [{only: 'pulls'}],
   [{pulls: {daysUntilStale: 2}}],
   [{issues: {staleLabel: 'stale-issue'}}],
+  [{skipWeekends: true}],
   [{_extends: '.github'}],
   [{_extends: 'foobar'}]
 ]
@@ -65,7 +66,8 @@ describe('schema', () => {
         'activity occurs. Thank you for your contributions.',
       unmarkComment: false,
       closeComment: false,
-      limitPerRun: 30
+      limitPerRun: 30,
+      skipWeekends: false
     })
   })
 

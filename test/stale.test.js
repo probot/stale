@@ -195,4 +195,30 @@ describe('stale', () => {
       expect(stale.getClosable).not.toHaveBeenCalled()
     }
   )
+
+  test(
+    'should count weekends for age by default',
+    async () => {
+      let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger: robot.log})
+      stale.config.skipWeekends = false
+      const now = Date.now()
+      Date.now = jest.genMockFunction().mockReturnValue(now)
+      const sinceDate = stale.since(7)
+      expect(sinceDate).toEqual(new Date(now - 7 * 24 * 60 * 60 * 1000))
+    }
+  )
+
+  test(
+    'should not count weekends for age when configured with skipWeekends',
+    async () => {
+      let stale = new Stale(github, {perform: true, owner: 'probot', repo: 'stale', logger: robot.log})
+      stale.config.skipWeekends = true
+
+      const now = new Date(2018, 5, 18) // June 18, 2018, a Monday
+      Date.now = jest.genMockFunction().mockReturnValue(now)
+
+      const sinceDate = stale.since(1)
+      expect(sinceDate).toEqual(new Date(2018, 5, 15)) // June 15, 2018, the preceding Friday
+    }
+  )
 })
