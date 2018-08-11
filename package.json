@@ -35,5 +35,8 @@
     "env": [
       "jest"
     ]
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
