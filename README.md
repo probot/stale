@@ -20,7 +20,7 @@ A `.github/stale.yml` file is required to enable the plugin. The file can be emp
 # Number of days of inactivity before an Issue or Pull Request becomes stale
 daysUntilStale: 60
 
-# Number of days of inactivity before a stale Issue or Pull Request is closed.
+# Number of days of inactivity after the stale label has been set, before a stale Issue or Pull Request is closed.
 # Set to false to disable. If disabled, issues still need to be closed manually, but will remain marked as stale.
 daysUntilClose: 7
 
