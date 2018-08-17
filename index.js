@@ -2,9 +2,9 @@ const getConfig = require('probot-config')
 const createScheduler = require('probot-scheduler')
 const Stale = require('./lib/stale')
 
-module.exports = async robot => {
+module.exports = async app => {
   // Visit all repositories to mark and sweep stale issues
-  const scheduler = createScheduler(robot)
+  const scheduler = createScheduler(app)
 
   // Unmark stale issues if a user comments
   const events = [
@@ -15,8 +15,8 @@ module.exports = async robot => {
     'pull_request_review_comment'
   ]
 
-  robot.on(events, unmark)
-  robot.on('schedule.repository', markAndSweep)
+  app.on(events, unmark)
+  app.on('schedule.repository', markAndSweep)
 
   async function unmark (context) {
     if (!context.isBot) {
@@ -57,7 +57,7 @@ module.exports = async robot => {
       config = {perform: false}
     }
 
-    config = Object.assign(config, context.repo({logger: robot.log}))
+    config = Object.assign(config, context.repo({logger: app.log}))
 
     return new Stale(context.github, config)
   }
