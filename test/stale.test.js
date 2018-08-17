@@ -106,7 +106,7 @@ describe('stale', () => {
       let labeledStale = 0
       github.issues.createComment = jest.fn().mockImplementation(() => {
         comments++
-        Promise.resolve(notFoundError)
+        return Promise.resolve(notFoundError)
       })
       github.issues.edit = ({owner, repo, number, state}) => {
         if (state === 'closed') {
