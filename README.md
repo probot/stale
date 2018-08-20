@@ -74,9 +74,11 @@ limitPerRun: 30
 
 ## How long will it take?
 
-The app runs on a scheduled basis and in batches in order to avoid hitting rate limit ceilings, so even after you initially install the GitHub configuration and add the `stale.yml` file, you may not see it act immediately.
+The app runs on a scheduled basis and in batches in order to avoid hitting rate limit ceilings. 
 
-If the bot doesn't run within 24 hours of initial setup, please open an issue and we can investigate further.
+Ergo, even after you initially install the GitHub configuration and add the `stale.yml` file, you may not see it act immediately.
+
+If the bot doesn't run within 24 hours of initial setup, feel free to [open an issue](https://github.com/probot/stale/issues/new) and we can investigate further.
 
 ## How are issues and pull requests considered stale?
 
