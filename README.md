@@ -72,6 +72,12 @@ limitPerRun: 30
 #     - confirmed
 ```
 
+## How long will it take?
+
+The app runs on a scheduled basis and in batches in order to avoid hitting rate limit ceilings, so even after you initially install the GitHub configuration and add the `stale.yml` file, you may not see it act immediately.
+
+If the bot doesn't run within 24 hours of initial setup, please open an issue and we can investigate further.
+
 ## How are issues and pull requests considered stale?
 
 The app uses GitHub's [updated](https://help.github.com/articles/searching-issues/#search-based-on-when-an-issue-or-pull-request-was-created-or-last-updated) search qualifier to determine staleness. Any change to an issues and pull request is considered an update, including comments, changing labels, applying or removing milestones,  or pushing commits.
