@@ -76,7 +76,7 @@ limitPerRun: 30
 
 The app runs on a scheduled basis and in batches in order to avoid hitting rate limit ceilings. 
 
-Ergo, even after you initially install the GitHub configuration and add the `stale.yml` file, you may not see it act immediately.
+This means that even after you initially install the GitHub configuration and add the `stale.yml` file, you may not see it act immediately.
 
 If the bot doesn't run within 24 hours of initial setup, feel free to [open an issue](https://github.com/probot/stale/issues/new) and we can investigate further.
 
