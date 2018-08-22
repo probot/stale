@@ -82,6 +82,14 @@ An easy way to check and see which issues or pull requests will initially be mar
 
 To avoid triggering abuse prevention mechanisms on GitHub, only 30 issues and pull requests will be marked or closed per hour. If your repository has more than that, it will just take a few hours or days to mark them all.
 
+## How long will it take?
+
+The app runs on a scheduled basis and in batches in order to avoid hitting rate limit ceilings. 
+
+This means that even after you initially install the GitHub configuration and add the `stale.yml` file, you may not see it act immediately.
+
+If the bot doesn't run within 24 hours of initial setup, feel free to [open an issue](https://github.com/probot/stale/issues/new) and we can investigate further.
+
 ## Is closing stale issues really a good idea?
 
 In an ideal world with infinite resources, there would be no need for this app.
