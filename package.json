@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "joi": "^13.1.2",
-    "probot": "7.0.1",
+    "probot": "7.1.0",
     "probot-config": "^0.1.0",
     "probot-scheduler": "^1.0.2",
     "standard": "^11.0.0"
