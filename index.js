@@ -54,10 +54,10 @@ module.exports = async app => {
     if (!config) {
       scheduler.stop(context.payload.repository)
       // Don't actually perform for repository without a config
-      config = {perform: false}
+      config = { perform: false }
     }
 
-    config = Object.assign(config, context.repo({logger: app.log}))
+    config = Object.assign(config, context.repo({ logger: app.log }))
 
     return new Stale(context.github, config)
   }
