@@ -20,8 +20,7 @@
     "joi": "^13.1.2",
     "probot": "7.0.1",
     "probot-config": "^0.1.0",
-    "probot-scheduler": "^1.0.2",
-    "standard": "^11.0.0"
+    "probot-scheduler": "^1.0.2"
   },
   "engines": {
     "node": "^8.9",
@@ -29,7 +28,8 @@
   },
   "devDependencies": {
     "jest": "^22.2.2",
-    "smee-client": "^1.0.1"
+    "smee-client": "^1.0.1",
+    "standard": "^12.0.1"
   },
   "standard": {
     "env": [
