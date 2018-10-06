@@ -65,7 +65,8 @@ describe('schema', () => {
         'activity occurs. Thank you for your contributions.',
       unmarkComment: false,
       closeComment: false,
-      limitPerRun: 30
+      limitPerRun: 30,
+      interval: 1
     })
   })
 

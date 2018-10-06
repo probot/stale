@@ -3,9 +3,6 @@ const createScheduler = require('probot-scheduler')
 const Stale = require('./lib/stale')
 
 module.exports = async app => {
-  // Visit all repositories to mark and sweep stale issues
-  const scheduler = createScheduler(app)
-
   // Unmark stale issues if a user comments
   const events = [
     'issue_comment',
@@ -50,6 +47,12 @@ module.exports = async app => {
 
   async function forRepository (context) {
     let config = await getConfig(context, 'stale.yml')
+    let interval = config['interval']
+
+    // Visit all repositories to mark and sweep stale issues
+    let scheduler = createScheduler(app, {
+      interval: interval * 60 * 60 * 1000
+    })
 
     if (!config) {
       scheduler.stop(context.payload.repository)
