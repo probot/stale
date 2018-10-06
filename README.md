@@ -56,7 +56,7 @@ markComment: >
 # Limit the number of actions per hour, from 1-30. Default is 30
 limitPerRun: 30
 
-# The number of hours to schedule a run, 1-24. Default is 1
+# The number of hours per day to schedule a run, 1-24. Default is 1
 interval: 1
 
 # Limit to only `issues` or `pulls`
