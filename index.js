@@ -47,7 +47,11 @@ module.exports = async app => {
 
   async function forRepository (context) {
     let config = await getConfig(context, 'stale.yml')
-    let interval = config['interval']
+
+    let interval = 1
+    if (config && config.interval) {
+      interval = config.interval
+    }
 
     // Visit all repositories to mark and sweep stale issues
     let scheduler = createScheduler(app, {
