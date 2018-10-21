@@ -1,27 +1,42 @@
 {
   "name": "probot-stale",
-  "version": "1.0.0",
-  "description": "a GitHub App that closes abandoned issues after a period of inactivity",
+  "version": "1.1.0",
+  "description": "A GitHub App built with Probot that closes abandoned Issues and Pull Requests after a period of inactivity.",
   "author": "Brandon Keepers",
   "license": "ISC",
+  "homepage": "https://probot.github.io/apps/stale/",
+  "bugs": "https://github.com/probot/stale/issues",
+  "keywords": [
+    "probot",
+    "github",
+    "probot-app"
+  ],
   "repository": "https://github.com/probot/stale",
   "scripts": {
     "start": "probot run ./index.js",
-    "test": "xo --extend probot"
+    "test": "jest && standard"
   },
   "dependencies": {
-    "probot": "^0.8.0",
-    "probot-scheduler": "^1.0.1"
+    "joi": "^13.1.2",
+    "probot": "7.0.1",
+    "probot-config": "^0.1.0",
+    "probot-scheduler": "^1.0.2"
   },
   "engines": {
-    "node": "^7.7",
-    "npm": "^4.0"
+    "node": "^8.9",
+    "npm": "^5.6"
   },
   "devDependencies": {
-    "eslint-config-probot": "^0.1.0",
-    "expect": "^1.20.2",
-    "localtunnel": "^1.8.3",
-    "mocha": "^3.4.2",
-    "xo": "^0.17.1"
+    "jest": "^22.2.2",
+    "smee-client": "^1.0.1",
+    "standard": "^12.0.1"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
