@@ -17,7 +17,7 @@
     "test": "jest && standard"
   },
   "dependencies": {
-    "joi": "^13.1.2",
+    "joi": "^14.0.0",
     "probot": "7.0.1",
     "probot-config": "^0.1.0",
     "probot-scheduler": "^1.0.2"
