@@ -36,6 +36,9 @@ exemptProjects: false
 # Set to true to ignore issues in a milestone (defaults to false)
 exemptMilestones: false
 
+# Set to true to ignore issues with an assignee (defaults to false)
+exemptAssignees: false
+
 # Label to use when marking as stale
 staleLabel: wontfix
 
