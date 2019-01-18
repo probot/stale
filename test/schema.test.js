@@ -3,6 +3,8 @@ const schema = require('../lib/schema')
 const validConfigs = [
   [{ daysUntilClose: false }],
   [{ daysUntilClose: 1 }],
+  [{ daysUntilClose: false }],
+  [{ daysUntilPullRequestStale: 1 }],
   [{ exemptLabels: ['foo'] }],
   [{ exemptLabels: 'foo' }, { exemptLabels: ['foo'] }],
   [{ exemptLabels: null }],
