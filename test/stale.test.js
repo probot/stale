@@ -33,7 +33,7 @@ describe('stale', () => {
         edit: issueAction
       },
       search: {
-        issues: issueAction
+        issuesAndPullRequests: issueAction
       }
     }
 
@@ -66,16 +66,16 @@ describe('stale', () => {
     const issues = []
     for (let i = 1; i <= issueCount; i++) {
       const labels = (i <= staleCount) ? [{ name: staleLabel }] : []
-      issues.push({ number: i, labels: labels })
+      return issues.push({ number: i, labels: labels })
     }
 
     const prs = []
     for (let i = 101; i <= 100 + issueCount; i++) {
       const labels = (i <= 100 + staleCount) ? [{ name: staleLabel }] : []
-      prs.push({ number: i, labels: labels })
+      return prs.push({ number: i, labels: labels })
     }
 
-    github.search.issues = ({ q, sort, order, per_page }) => {
+    github.search.issuesAndPullRequests = ({ q, sort, order, per_page }) => {
       let items = []
       if (q.includes('is:pr')) {
         items = items.concat(prs.slice(0, per_page))
