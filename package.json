@@ -1,6 +1,6 @@
 {
   "name": "probot-stale",
-  "version": "1.1.0",
+  "version": "2.0.0-beta.1",
   "description": "A GitHub App built with Probot that closes abandoned Issues and Pull Requests after a period of inactivity.",
   "author": "Brandon Keepers",
   "license": "ISC",
@@ -13,15 +13,16 @@
   ],
   "repository": "https://github.com/probot/stale",
   "scripts": {
+    "dev": "nodemon --exec \"npm start\"",
     "start": "probot run ./index.js",
     "test": "jest && standard"
   },
   "dependencies": {
     "joi": "^14.0.0",
     "newrelic": "^5.2.1",
-    "probot": "8.0.0-beta.6",
+    "probot": "^9.0.0",
     "probot-config": "^1.0.0",
-    "probot-scheduler": "^1.0.2"
+    "probot-scheduler": "probot/scheduler#probot-v8"
   },
   "engines": {
     "node": "^8.9",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "jest": "^22.2.2",
+    "nodemon": "^1.18.10",
     "smee-client": "^1.0.1",
     "standard": "^12.0.1"
   },
