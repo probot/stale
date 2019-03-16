@@ -24,7 +24,7 @@ daysUntilStale: 60
 # Set to false to disable. If disabled, issues still need to be closed manually, but will remain marked as stale.
 daysUntilClose: 7
 
-#Only issues or pull requests with all of these labels are check if stale. Set to `[]` to disable
+# Only issues or pull requests with all of these labels are check if stale. Defaults to `[]` (disabled)
 onlyLabels: []
 
 # Issues or Pull Requests with these labels will never be considered stale. Set to `[]` to disable
