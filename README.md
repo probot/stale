@@ -24,6 +24,9 @@ daysUntilStale: 60
 # Set to false to disable. If disabled, issues still need to be closed manually, but will remain marked as stale.
 daysUntilClose: 7
 
+# Only issues or pull requests with all of these labels are check if stale. Defaults to `[]` (disabled)
+onlyLabels: []
+
 # Issues or Pull Requests with these labels will never be considered stale. Set to `[]` to disable
 exemptLabels:
   - pinned
@@ -87,7 +90,7 @@ To avoid triggering abuse prevention mechanisms on GitHub, only 30 issues and pu
 
 ## How long will it take?
 
-The app runs on a scheduled basis and in batches in order to avoid hitting rate limit ceilings. 
+The app runs on a scheduled basis and in batches in order to avoid hitting rate limit ceilings.
 
 This means that even after you initially install the GitHub configuration and add the `stale.yml` file, you may not see it act immediately.
 

@@ -48,7 +48,7 @@ describe('stale', () => {
 
       for (const type of ['pulls', 'issues']) {
         try {
-          await stale.unmark(type, { number: 123 })
+          await stale.unmarkIssue(type, { number: 123 })
         } catch (_) {
           throw new Error('Should not have thrown an error')
         }

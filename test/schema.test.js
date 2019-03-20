@@ -3,6 +3,10 @@ const schema = require('../lib/schema')
 const validConfigs = [
   [{ daysUntilClose: false }],
   [{ daysUntilClose: 1 }],
+  [{ onlyLabels: ['foo'] }],
+  [{ onlyLabels: 'foo' }, { onlyLabels: ['foo'] }],
+  [{ onlyLabels: null }],
+  [{ onlyLabels: [] }],
   [{ exemptLabels: ['foo'] }],
   [{ exemptLabels: 'foo' }, { exemptLabels: ['foo'] }],
   [{ exemptLabels: null }],
@@ -58,6 +62,7 @@ describe('schema', () => {
     expect(schema.validate({}).value).toEqual({
       daysUntilStale: 60,
       daysUntilClose: 7,
+      onlyLabels: [],
       exemptLabels: ['pinned', 'security'],
       exemptProjects: false,
       exemptMilestones: false,

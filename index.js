@@ -39,7 +39,7 @@ module.exports = async app => {
         context.payload.label.name === stale.config.staleLabel
 
       if (stale.hasStaleLabel(type, issue) && issue.state !== 'closed' && !staleLabelAdded) {
-        stale.unmark(type, issue)
+        stale.unmarkIssue(type, issue)
       }
     }
   }
