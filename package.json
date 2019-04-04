@@ -22,7 +22,7 @@
     "newrelic": "^5.2.1",
     "probot": "^9.2.0",
     "probot-config": "^1.0.0",
-    "probot-scheduler": "github:probot/scheduler#probot-v8"
+    "probot-scheduler": "^2.0.0-beta.1"
   },
   "engines": {
     "node": "^8.9",
