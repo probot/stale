@@ -20,7 +20,7 @@
   "dependencies": {
     "joi": "^14.0.0",
     "newrelic": "^5.2.1",
-    "probot": "^9.0.0",
+    "probot": "^9.2.0",
     "probot-config": "^1.0.0",
     "probot-scheduler": "probot/scheduler#probot-v8"
   },
