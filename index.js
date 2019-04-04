@@ -1,4 +1,6 @@
-require('newrelic')
+if (process.env.NODE_ENV === 'production') {
+  require('newrelic')
+}
 
 const getConfig = require('probot-config')
 const createScheduler = require('probot-scheduler')
