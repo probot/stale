@@ -13,3 +13,8 @@ This plugin requires these **Permissions & events** for the GitHub App:
   - [x] Check the box for **Pull request review comment** events
 - Single File - **Read-only**
   - Path: `.github/stale.yml`
+
+**NOTE**: To disable newrelic when running your own instance, add the following key to your `.env` file:
+```bash
+DISABLE_NEW_RELIC=true
+```

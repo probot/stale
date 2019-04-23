@@ -1,4 +1,8 @@
-require('newrelic')
+require('dotenv').config()
+
+if (!process.env.DISABLE_NEW_RELIC) {
+  require('newrelic')
+}
 
 const getConfig = require('probot-config')
 const createScheduler = require('probot-scheduler')

@@ -17,6 +17,7 @@
     "test": "jest && standard"
   },
   "dependencies": {
+    "dotenv": "^7.0.0",
     "joi": "^14.0.0",
     "newrelic": "^5.2.1",
     "probot": "7.3.1",
