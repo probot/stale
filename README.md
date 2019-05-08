@@ -17,7 +17,7 @@ A `.github/stale.yml` file is required to enable the plugin. The file can be emp
 ```yml
 # Configuration for probot-stale - https://github.com/probot/stale
 
-# Number of days of inactivity before an Issue or Pull Request becomes stale
+# Number of days (accepts any number) of inactivity before an Issue or Pull Request becomes stale
 daysUntilStale: 60
 
 # Number of days of inactivity before an Issue or Pull Request with the stale label is closed.
