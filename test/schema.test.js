@@ -69,6 +69,7 @@ describe('schema', () => {
       exemptAssignees: false,
       staleLabel: 'wontfix',
       perform: true,
+      reopenIssue: false,
       markComment: 'Is this still relevant? If so, what is blocking it? ' +
         'Is there anything you can do to help move it forward?' +
         '\n\nThis issue has been automatically marked as stale ' +
