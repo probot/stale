@@ -61,7 +61,10 @@ describe('schema', () => {
       staleLabel: 'wontfix',
       perform: true,
       markComment: 'Is this still relevant? If so, what is blocking it? ' +
-        'Is there anything you can do to help move it forward?',
+        'Is there anything you can do to help move it forward?' +
+        '\n\nThis issue has been automatically marked as stale ' +
+        'because it has not had recent activity. ' +
+        'It will be closed if no further activity occurs.',
       unmarkComment: false,
       closeComment: false,
       limitPerRun: 30
