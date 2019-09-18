@@ -17,6 +17,8 @@ const validConfigs = [
   [{ exemptMilestones: false }],
   [{ exemptAssignees: true }],
   [{ exemptAssignees: false }],
+  [{exemptIfNoCollaboratorComment: true}],
+  [{exemptIfNoCollaboratorComment: false}],
   [{ staleLabel: 'stale' }],
   [{ markComment: 'stale yo' }],
   [{ markComment: false }],
@@ -67,6 +69,7 @@ describe('schema', () => {
       exemptProjects: false,
       exemptMilestones: false,
       exemptAssignees: false,
+      exemptIfNoCollaboratorComment: false,
       staleLabel: 'wontfix',
       perform: true,
       markComment: 'Is this still relevant? If so, what is blocking it? ' +

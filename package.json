@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@hapi/joi": "^15.0.0",
+    "lodash.includes": "^4.3.0",
     "newrelic": "^5.2.1",
     "probot": "7.3.1",
     "probot-config": "^0.1.0",
