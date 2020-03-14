@@ -195,4 +195,12 @@ describe('stale', () => {
       expect(stale.getClosable).not.toHaveBeenCalled()
     }
   )
+
+  test('should ignore pinned issues', () => {
+    expect('Test implementation pending').toStrictEqual('Test implemented')
+  })
+
+  test('should log, but ignore errors fetching pinned issues', () => {
+    expect('Test implementation pending').toStrictEqual('Test implemented')
+  })
 })
