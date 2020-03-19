@@ -195,4 +195,92 @@ describe('stale', () => {
       expect(stale.getClosable).not.toHaveBeenCalled()
     }
   )
+
+  describe('mark', () => {
+    test(
+      'should not mark issue if it is already closed',
+      async () => {
+        let stale = new Stale(github, { perform: true, owner: 'probot', repo: 'stale', logger: app.log })
+        stale.getStale = jest.fn().mockImplementation(() => {
+          return Promise.resolve({
+            data: {
+              items: [
+                { number: 1, state: 'closed' }
+              ]
+            }
+          })
+        })
+        stale.markIssue = jest.fn()
+
+        await stale.mark('issues')
+        expect(stale.markIssue).not.toHaveBeenCalled()
+      }
+    )
+
+    test(
+      'should not mark issue if it is already closed',
+      async () => {
+        let stale = new Stale(github, { perform: true, owner: 'probot', repo: 'stale', logger: app.log })
+        stale.getStale = jest.fn().mockImplementation(() => {
+          return Promise.resolve({
+            data: {
+              items: [
+                { number: 1, state: 'open' }
+              ]
+            }
+          })
+        })
+        stale.markIssue = jest.fn()
+
+        await stale.mark('issues')
+        expect(stale.markIssue).toHaveBeenCalled()
+      }
+    )
+  })
+
+  describe('sweep', () => {
+    test(
+      'should not close issue if it is already closed',
+      async () => {
+        const staleLabel = 'stale'
+        let stale = new Stale(github, { perform: true, owner: 'probot', repo: 'stale', logger: app.log })
+        stale.config.daysUntilClose = 1
+        stale.getClosable = jest.fn().mockImplementation(() => {
+          return Promise.resolve({
+            data: {
+              items: [
+                { number: 1, labels: [{ name: staleLabel }], state: 'closed' }
+              ]
+            }
+          })
+        })
+        stale.close = jest.fn()
+
+        await stale.sweep('issues')
+        expect(stale.close).not.toHaveBeenCalled()
+      }
+    )
+
+    test(
+      'should close issue if it is open',
+      async () => {
+        const staleLabel = 'stale'
+        let stale = new Stale(github, { perform: true, owner: 'probot', repo: 'stale', logger: app.log })
+        stale.config.daysUntilClose = 1
+        stale.getClosable = jest.fn().mockImplementation(() => {
+          return Promise.resolve({
+            data: {
+              items: [
+                { number: 1, labels: [{ name: staleLabel }], state: 'open' }
+              ]
+            }
+          })
+        })
+        stale.close = jest.fn()
+
+        await stale.sweep('issues')
+        expect(stale.close).toHaveBeenCalled()
+      }
+    )
+  })
 })
