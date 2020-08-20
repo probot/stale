@@ -15,5 +15,6 @@ jobs:
           id: ${{ secrets.STALE_APP_ID }}
           private_key: ${{ secrets.STALE_APP_PRIVATE_KEY }}
       - run: "echo installations: '${{ steps.stats.outputs.installations }}'"
+      - run: "echo suspended: '${{ steps.stats.outputs.suspended_installations }}'"
+      - run: "echo repositories: '${{ steps.stats.outputs.repositories }}'"
       - run: "echo most popular repositories: '${{ steps.stats.outputs.popular_repositories }}'"
-      - run: "echo suspended: '${{ steps.stats.outputs.suspendedInstallations }}'"
