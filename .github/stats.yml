@@ -1,0 +1,19 @@
+on:
+  schedule:
+    # https://crontab.guru/once-a-day
+    - cron: 0 0 * * *
+  workflow_dispatch: {}
+
+name: Stats
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: gr2m/app-stats-action@v1.x
+        id: stats
+        with:
+          id: ${{ secrets.STALE_APP_ID }}
+          private_key: ${{ secrets.STALE_APP_PRIVATE_KEY }}
+      - run: "echo installations: '${{ steps.stats.outputs.installations }}'"
+      - run: "echo most popular repositories: '${{ steps.stats.outputs.popular_repositories }}'"
+      - run: "echo suspended: '${{ steps.stats.outputs.suspendedInstallations }}'"
