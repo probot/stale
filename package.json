@@ -1,17 +1,17 @@
 {
-  "name": "probot-stale",
+  "name": "ollis-probot-stale",
   "version": "1.1.0",
   "description": "A GitHub App built with Probot that closes abandoned Issues and Pull Requests after a period of inactivity.",
   "author": "Brandon Keepers",
   "license": "ISC",
   "homepage": "https://probot.github.io/apps/stale/",
-  "bugs": "https://github.com/probot/stale/issues",
+  "bugs": "https://github.com/OllisGit/stale/issues",
   "keywords": [
     "probot",
     "github",
     "probot-app"
   ],
-  "repository": "https://github.com/probot/stale",
+  "repository": "https://github.com/OllisGit/stale",
   "scripts": {
     "start": "probot run ./index.js",
     "test": "jest && standard"
