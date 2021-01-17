@@ -68,6 +68,7 @@ describe('schema', () => {
       exemptMilestones: false,
       exemptAssignees: false,
       staleLabel: 'wontfix',
+      closedLabel: false,
       perform: true,
       markComment: 'Is this still relevant? If so, what is blocking it? ' +
         'Is there anything you can do to help move it forward?' +
