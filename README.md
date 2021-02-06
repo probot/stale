@@ -10,7 +10,7 @@ Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-m
 
 1. **[Configure the GitHub App](https://github.com/apps/stale)**
 2. Create `.github/stale.yml` based on the following template.
-3. It will start scanning for stale issues and/or pull requests within an hour.
+3. It will start scanning for stale issues and/or pull requests within 24 hours.
 
 A `.github/stale.yml` file is required to enable the plugin. The file can be empty, or it can override any of these default settings:
 
