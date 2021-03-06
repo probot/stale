@@ -42,6 +42,9 @@ exemptMilestones: false
 # Set to true to ignore issues with an assignee (defaults to false)
 exemptAssignees: false
 
+# Set to true to ignore draft pull requests (defaults to false)
+exemptDrafts: false
+
 # Label to use when marking as stale
 staleLabel: wontfix
 
