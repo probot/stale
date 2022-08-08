@@ -30,7 +30,7 @@ describe('stale', () => {
         createLabel: issueAction,
         addLabels: issueAction,
         createComment: issueAction,
-        edit: issueAction
+        update: issueAction
       },
       search: {
         issues: issueAction
@@ -108,8 +108,9 @@ describe('stale', () => {
         comments++
         return Promise.resolve(notFoundError)
       })
-      github.issues.edit = ({ owner, repo, number, state }) => {
+      github.issues.update = ({ owner, repo, number, state, state_reason }) => {
         if (state === 'closed') {
+          expect(state_reason).toBe('not_planned')
           closed++
         }
       }
