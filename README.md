@@ -66,6 +66,9 @@ markComment: >
 # closeComment: >
 #   Your comment here.
 
+# Set to true to reopen closed Issue or Pull Request on reply.
+# reopenIssue: false (defaults to false)
+
 # Limit the number of actions per hour, from 1-30. Default is 30
 limitPerRun: 30
 
