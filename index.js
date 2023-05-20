@@ -20,6 +20,9 @@ module.exports = async app => {
   app.on(events, unmark)
   app.on('schedule.repository', markAndSweep)
 
+  /**
+   * @param {import('probot').Context} context 
+   */
   async function unmark (context) {
     if (!context.isBot) {
       const stale = await forRepository(context)
@@ -44,12 +47,18 @@ module.exports = async app => {
     }
   }
 
+  /**
+   * @param {import('probot').Context} context 
+   */
   async function markAndSweep (context) {
     const stale = await forRepository(context)
     await stale.markAndSweep('pulls')
     await stale.markAndSweep('issues')
   }
 
+  /**
+   * @param {import('probot').Context} context 
+   */
   async function forRepository (context) {
     let config = await getConfig(context, 'stale.yml')
 
