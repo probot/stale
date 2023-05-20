@@ -6,6 +6,13 @@
 
 Inspired by @parkr's [auto-reply](https://github.com/parkr/auto-reply#optional-mark-and-sweep-stale-issues) bot that runs @jekyllbot.
 
+## 📯 The stale app is deprecated and this repository is no longer maintained
+
+Please use [the stale action](https://github.com/actions/stale) instead.
+
+<details>
+  <summary>See old Readme</summary>
+
 ## Usage
 
 1. **[Configure the GitHub App](https://github.com/apps/stale)**
@@ -117,3 +124,5 @@ Note that all interactions fall under the [Probot Code of Conduct](https://githu
 ## License
 
 [ISC](LICENSE) Copyright © 2017-2018 Brandon Keepers
+
+</details>
