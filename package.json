@@ -16,7 +16,7 @@
     "test": "jest && standard"
   },
   "dependencies": {
-    "@hapi/joi": "^15.0.0",
+    "@hapi/joi": "^15.1.1",
     "newrelic": "^5.2.1",
     "probot": "7.3.1",
     "probot-config": "^0.1.0",
